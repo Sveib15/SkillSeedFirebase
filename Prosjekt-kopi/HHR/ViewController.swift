@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+
 
 class ViewController: UIViewController {
     override func viewDidLoad() {

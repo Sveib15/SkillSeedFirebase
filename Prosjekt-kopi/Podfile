@@ -10,5 +10,8 @@ target 'HHR' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 end
