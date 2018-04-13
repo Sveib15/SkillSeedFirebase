@@ -15,6 +15,12 @@
 		10A9EAF020515AE2001CAAC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10A9EAEF20515AE1001CAAC8 /* GoogleService-Info.plist */; };
 		10B1082D203EF3C0003BF3EA /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */; };
 		35DD1F8FBFBAF77747DD1EDB /* Pods_HHR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7088CC563D82F34ECA1A9D6B /* Pods_HHR.framework */; };
+		5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */; };
+		5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5567CC31207CB13000EA4DE8 /* RegistrationController.swift */; };
+		55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C51207CF05C0015D289 /* InitialDescView.swift */; };
+		55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C53207E2BD50015D289 /* LoginController.swift */; };
+		55BD72602077695A004B7FC0 /* SearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD725F2077695A004B7FC0 /* SearchTable.swift */; };
+		55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD726120776F35004B7FC0 /* SearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		10A9EAEF20515AE1001CAAC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		21B2923F0ABFDF96B4DEF4BD /* Pods-HHR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHR.release.xcconfig"; path = "Pods/Target Support Files/Pods-HHR/Pods-HHR.release.xcconfig"; sourceTree = "<group>"; };
+		5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
+		5567CC31207CB13000EA4DE8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		55BB3C51207CF05C0015D289 /* InitialDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDescView.swift; sourceTree = "<group>"; };
+		55BB3C53207E2BD50015D289 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		55BD725F2077695A004B7FC0 /* SearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTable.swift; sourceTree = "<group>"; };
+		55BD726120776F35004B7FC0 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		7088CC563D82F34ECA1A9D6B /* Pods_HHR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HHR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5CB94A9DD2D7889E6C10F /* Pods-HHR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HHR/Pods-HHR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,12 +87,18 @@
 			isa = PBXGroup;
 			children = (
 				108BBED7202DAF6A00E5CBCA /* AppDelegate.swift */,
+				55BB3C51207CF05C0015D289 /* InitialDescView.swift */,
 				108BBED9202DAF6A00E5CBCA /* ViewController.swift */,
 				10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */,
-				10A9EAEF20515AE1001CAAC8 /* GoogleService-Info.plist */,
+				55BD725F2077695A004B7FC0 /* SearchTable.swift */,
+				55BD726120776F35004B7FC0 /* SearchCell.swift */,
+				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
+				5567CC31207CB13000EA4DE8 /* RegistrationController.swift */,
+				55BB3C53207E2BD50015D289 /* LoginController.swift */,
 				10A9EAED205153AA001CAAC8 /* Main.storyboard */,
 				108BBEDE202DAF6A00E5CBCA /* Assets.xcassets */,
 				108BBEE0202DAF6A00E5CBCA /* LaunchScreen.storyboard */,
+				10A9EAEF20515AE1001CAAC8 /* GoogleService-Info.plist */,
 				108BBEE3202DAF6A00E5CBCA /* Info.plist */,
 			);
 			path = HHR;
@@ -188,6 +206,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HHR/Pods-HHR-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -196,6 +218,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -232,8 +258,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */,
 				10B1082D203EF3C0003BF3EA /* CalenderViewController.swift in Sources */,
+				55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */,
+				55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */,
 				108BBEDA202DAF6A00E5CBCA /* ViewController.swift in Sources */,
+				55BD72602077695A004B7FC0 /* SearchTable.swift in Sources */,
+				55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */,
+				5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */,
 				108BBED8202DAF6A00E5CBCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -286,6 +319,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -313,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -343,6 +378,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
