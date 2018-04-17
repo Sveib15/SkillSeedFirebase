@@ -42,6 +42,12 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
             }
             self.welcomeLabel.text = ("Welcome \(name! )")
         }
+        //Sets the image as a circle
+        profileImage.layer.borderWidth = 1
+        profileImage.layer.masksToBounds = false
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.clipsToBounds = true
+        profileImage.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func handleSelectImage(_ sender: Any) {
@@ -121,7 +127,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
                 }
             }) // end putdata
         }
-        let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "MyProfileView")
+        let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
         self.present(destinationController!, animated: true, completion: nil)
     }//end continue
     

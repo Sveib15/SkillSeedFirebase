@@ -32,8 +32,14 @@ class LoginController: UIViewController {
                 print("FB login failed", err ?? "")
                 return
             }//end if err
-            self.showEmail()
-            self.changeViewController()
+            self.showEmail(completion: { (success) in
+                if success{
+                    self.changeViewController()
+                } else {
+                    print ("FIREBASE AUTH FAILED")
+                    return
+                }
+            })
         }//end FBSDKLoginManager
     }//end handeCustomFBLogin
     
@@ -48,7 +54,7 @@ class LoginController: UIViewController {
 
     checkUserSetup(userID: uid, completion: { (success) -> Void in
     if success{
-        let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "MyProfileView")
+        let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
     self.present(destinationController!, animated: true, completion: nil)
     } else {
         print("THE WILL NOT CHANGE")
@@ -61,7 +67,8 @@ class LoginController: UIViewController {
         } //end if token
     } //end ChangeVC
     
-    func showEmail(){
+    func showEmail(completion: @escaping ((_ success: Bool) ->Void)){
+        
         
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else
@@ -72,8 +79,10 @@ class LoginController: UIViewController {
         Auth.auth().signIn(with: credentials, completion: { (user, error) in
             if error != nil {
                 print ("something went wrong with FB user", error ?? "")
+                completion(false)
             }
             print("SUCCESSFULLY LOGGED IN WITH OUR USER: ", user ?? "")
+            completion(true)
         })
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
             (connection, result, err) in
