@@ -58,6 +58,7 @@ class LoginController: UIViewController {
     self.present(destinationController!, animated: true, completion: nil)
     } else {
         print("THE WILL NOT CHANGE")
+        Shared.shared.tabBarIndex = 0
         let RegController = self.storyboard?.instantiateViewController(withIdentifier: "RegistrationController")
         self.present(RegController!, animated: true, completion: nil)
         }

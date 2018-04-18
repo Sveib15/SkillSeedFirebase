@@ -32,32 +32,32 @@ class CustomSegmentControl: UIControl {
     @IBInspectable
     var commaSeperatedButtonTitles: String = "" {
         didSet {
-            updateView()
+            updateView(index: 0)
         }
     }
     
     @IBInspectable
     var textColor: UIColor = .lightGray {
         didSet {
-            updateView()
+            updateView(index: 0)
         }
     }
     
     @IBInspectable
     var selectorColor: UIColor = .darkGray {
         didSet {
-            updateView()
+            updateView(index: 0)
         }
     }
     
     @IBInspectable
     var selectorTextColor: UIColor = .white {
         didSet {
-            updateView()
+            updateView(index: 0)
         }
     }
     
-    func updateView() {
+    func updateView(index: Int) {
         buttons.removeAll()
         subviews.forEach { (view) in
             view.removeFromSuperview()
@@ -73,13 +73,19 @@ class CustomSegmentControl: UIControl {
             buttons.append(button)
         }
         
-        buttons[0].setTitleColor(selectorTextColor, for: .normal)
+        buttons[index].setTitleColor(selectorTextColor, for: .normal)
         
         let selectorWidth = frame.width / CGFloat(buttonTitles.count)
         selector = UIView(frame: CGRect(x: 0, y: 0, width: selectorWidth, height: frame.height))
         selector.layer.cornerRadius = frame.height/2
         selector.backgroundColor = selectorColor
         addSubview(selector)
+        
+        let selectorStartPosition = frame.width/CGFloat(buttons.count) * CGFloat(index)
+        UIView.animate(withDuration: 0.3) {
+            self.selector.frame.origin.x = selectorStartPosition
+        }
+        
         
         let sv = UIStackView(arrangedSubviews: buttons)
         sv.axis = .horizontal
@@ -112,7 +118,6 @@ class CustomSegmentControl: UIControl {
                 btn.setTitleColor(selectorTextColor, for: .normal)
             }
         }
-        
         sendActions(for: .valueChanged)
     }
 }

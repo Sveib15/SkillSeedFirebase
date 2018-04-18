@@ -18,6 +18,7 @@
 		5530527A208613BC00C985BC /* EditDescriptioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55305279208613BC00C985BC /* EditDescriptioController.swift */; };
 		5530527E2086280700C985BC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530527D2086280700C985BC /* CustomTabBar.swift */; };
 		5530528020862AF800C985BC /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530527F20862AF800C985BC /* Shared.swift */; };
+		553052822087462C00C985BC /* EditSkillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553052812087462C00C985BC /* EditSkillController.swift */; };
 		5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */; };
 		5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5567CC31207CB13000EA4DE8 /* RegistrationController.swift */; };
 		556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D3D1A2083907E00B7818C /* MyProfileController.swift */; };
@@ -42,6 +43,7 @@
 		55305279208613BC00C985BC /* EditDescriptioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptioController.swift; sourceTree = "<group>"; };
 		5530527D2086280700C985BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		5530527F20862AF800C985BC /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		553052812087462C00C985BC /* EditSkillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSkillController.swift; sourceTree = "<group>"; };
 		5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		5567CC31207CB13000EA4DE8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		556D3D1A2083907E00B7818C /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
 				5530527F20862AF800C985BC /* Shared.swift */,
 				5567CC31207CB13000EA4DE8 /* RegistrationController.swift */,
+				553052812087462C00C985BC /* EditSkillController.swift */,
 				556D3D1A2083907E00B7818C /* MyProfileController.swift */,
 				55BB3C53207E2BD50015D289 /* LoginController.swift */,
 				5530527D2086280700C985BC /* CustomTabBar.swift */,
@@ -286,6 +289,7 @@
 				55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */,
 				5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */,
 				108BBED8202DAF6A00E5CBCA /* AppDelegate.swift in Sources */,
+				553052822087462C00C985BC /* EditSkillController.swift in Sources */,
 				556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

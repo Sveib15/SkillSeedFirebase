@@ -127,6 +127,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
                 }
             }) // end putdata
         }
+        Shared.shared.tabBarIndex = 0
         let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
         self.present(destinationController!, animated: true, completion: nil)
     }//end continue

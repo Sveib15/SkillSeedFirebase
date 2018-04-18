@@ -34,13 +34,14 @@ class MyProfileController: UIViewController {
         profileImage.clipsToBounds = true
         profileImage.layer.borderColor = UIColor.black.cgColor
         
+        /*
         let imageRef = ref.child("userInfo").child(uid).child("profileImage")
         imageRef.observeSingleEvent(of: .value) { (snapshot) in
             self.imageUrlString = snapshot.value as? String
         }
         let imageUrl = URL(string: imageUrlString!)
         let imageData = NSData(contentsOf: imageUrl!)
-        
+        */
         
     }//end viewDidLoad
 
