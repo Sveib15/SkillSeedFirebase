@@ -22,7 +22,7 @@ class EditSkillController: UIViewController {
         
         ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
-        let skillRef = ref.child("userInfo").child(uid!).child("Skill")
+        let skillRef = ref.child("userSkillGolf").child(uid!).child("Skill")
         skillRef.observeSingleEvent(of: .value) { (snapshot) in
             self.SkillSelector.updateView(index: (snapshot.value as? Int)!)
         }
@@ -45,7 +45,7 @@ class EditSkillController: UIViewController {
                 return
         }
         let values = ["Skill": self.uploadSkill] as [String : Any]
-        self.ref?.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
+        self.ref?.child("userSkillGolf").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
             //Errorhandling
             if err != nil {
                 print(err!)

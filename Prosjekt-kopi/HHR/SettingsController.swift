@@ -28,19 +28,28 @@ class SettingsController: UITableViewController {
     }
 
     @IBAction func logOut(_ sender: Any) {
-        if Auth.auth().currentUser != nil {
-            do {
-                FBSDKLoginManager().logOut()
-                try Auth.auth().signOut()
-                let RegController = self.storyboard?.instantiateViewController(withIdentifier: "loginView")
-                self.present(RegController!, animated: true, completion: nil)
+        
+        let refreshAlert = UIAlertController(title: "Log Out", message: "You're about to log out!.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            
+            if Auth.auth().currentUser != nil {
+                do {
+                    FBSDKLoginManager().logOut()
+                    try Auth.auth().signOut()
+                    let RegController = self.storyboard?.instantiateViewController(withIdentifier: "loginView")
+                    self.present(RegController!, animated: true, completion: nil)
+                }
+                catch {
+                }
             }
-            catch {
-            }
-        }
+        }))
         
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("You didn't log out bitch!")
+        }))
         
-        
+        present(refreshAlert, animated: true, completion: nil)
     }
     
     

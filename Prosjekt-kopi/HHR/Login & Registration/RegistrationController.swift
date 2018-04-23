@@ -23,6 +23,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
     var uploadDesc : String = ""
     var uploadSkill: Int = 0
     var selectedImageFromPicker: UIImage?
+    var userName: String = "Thread 1 SIGBERT"
     
     
     override func viewDidLoad() {
@@ -30,11 +31,12 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
         ref = Database.database().reference()
         
         //sets the welcome Label to display correct name
-        FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "first_name"]).start {
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "first_name, name"]).start {
             (connection, result, err) in
             
             guard let data = result as? [String: Any] else {return}
             let name = data["first_name"]
+            self.userName = data["name"] as! String
         
             if err != nil {
                 print("problem:", err ?? "")
@@ -82,8 +84,16 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
         }
         checkDescription(userID: uid, completion: { (success) -> Void in
             if success{
-                let values = ["Skill": self.uploadSkill] as [String : Any]
-                self.ref?.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
+                let skillValues = ["Skill": self.uploadSkill] as [String : Any]
+                self.ref?.child("userSkillGolf").child(uid).updateChildValues(skillValues, withCompletionBlock: {(err, ref) in
+                    //Errorhandling
+                    if err != nil {
+                        print(err!)
+                        return
+                    }
+                })
+                let nameValue = ["Name": self.userName] as [String : Any]
+                self.ref?.child("userInfo").child(uid).updateChildValues(nameValue, withCompletionBlock: {(err, ref) in
                     //Errorhandling
                     if err != nil {
                         print(err!)
@@ -93,8 +103,16 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
                 print("SUCCESSFULLY PUSHED TO DATABASE with your chosen desc")
             } else{
                 //Pushes info to database
-                let values = ["Description": "", "Skill": self.uploadSkill] as [String : Any]
-                self.ref?.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
+                let descValues = ["Name": self.userName, "Description": ""] as [String : Any]
+                self.ref?.child("userInfo").child(uid).updateChildValues(descValues, withCompletionBlock: {(err, ref) in
+                    //Errorhandling
+                    if err != nil {
+                        print(err!)
+                        return
+                    }
+                })
+                let skillValues = ["Skill": self.uploadSkill] as [String : Any]
+                self.ref?.child("userSkillGolf").child(uid).updateChildValues(skillValues, withCompletionBlock: {(err, ref) in
                     //Errorhandling
                     if err != nil {
                         print(err!)

@@ -22,11 +22,13 @@
 		5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */; };
 		5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5567CC31207CB13000EA4DE8 /* RegistrationController.swift */; };
 		556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D3D1A2083907E00B7818C /* MyProfileController.swift */; };
+		55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */; };
 		55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C51207CF05C0015D289 /* InitialDescView.swift */; };
 		55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C53207E2BD50015D289 /* LoginController.swift */; };
 		55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BCF57A2085FB7A008AECCD /* SettingsController.swift */; };
 		55BD72602077695A004B7FC0 /* SearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD725F2077695A004B7FC0 /* SearchTable.swift */; };
 		55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD726120776F35004B7FC0 /* SearchCell.swift */; };
+		55FF73F12088A21300C8CCEA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FF73F02088A21300C8CCEA /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,11 +49,13 @@
 		5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		5567CC31207CB13000EA4DE8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		556D3D1A2083907E00B7818C /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
+		55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDescController.swift; sourceTree = "<group>"; };
 		55BB3C51207CF05C0015D289 /* InitialDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDescView.swift; sourceTree = "<group>"; };
 		55BB3C53207E2BD50015D289 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55BCF57A2085FB7A008AECCD /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		55BD725F2077695A004B7FC0 /* SearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTable.swift; sourceTree = "<group>"; };
 		55BD726120776F35004B7FC0 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		55FF73F02088A21300C8CCEA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7088CC563D82F34ECA1A9D6B /* Pods_HHR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HHR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5CB94A9DD2D7889E6C10F /* Pods-HHR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HHR/Pods-HHR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,8 +102,8 @@
 		108BBED6202DAF6A00E5CBCA /* HHR */ = {
 			isa = PBXGroup;
 			children = (
+				55AFA7D0208DCF7200C41735 /* Login & Registration */,
 				108BBED7202DAF6A00E5CBCA /* AppDelegate.swift */,
-				55BB3C51207CF05C0015D289 /* InitialDescView.swift */,
 				108BBED9202DAF6A00E5CBCA /* ViewController.swift */,
 				10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */,
 				55BD725F2077695A004B7FC0 /* SearchTable.swift */,
@@ -107,10 +111,10 @@
 				55305279208613BC00C985BC /* EditDescriptioController.swift */,
 				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
 				5530527F20862AF800C985BC /* Shared.swift */,
-				5567CC31207CB13000EA4DE8 /* RegistrationController.swift */,
+				55FF73F02088A21300C8CCEA /* NetworkService.swift */,
+				55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */,
 				553052812087462C00C985BC /* EditSkillController.swift */,
 				556D3D1A2083907E00B7818C /* MyProfileController.swift */,
-				55BB3C53207E2BD50015D289 /* LoginController.swift */,
 				5530527D2086280700C985BC /* CustomTabBar.swift */,
 				55BCF57A2085FB7A008AECCD /* SettingsController.swift */,
 				10A9EAED205153AA001CAAC8 /* Main.storyboard */,
@@ -120,6 +124,16 @@
 				108BBEE3202DAF6A00E5CBCA /* Info.plist */,
 			);
 			path = HHR;
+			sourceTree = "<group>";
+		};
+		55AFA7D0208DCF7200C41735 /* Login & Registration */ = {
+			isa = PBXGroup;
+			children = (
+				55BB3C51207CF05C0015D289 /* InitialDescView.swift */,
+				55BB3C53207E2BD50015D289 /* LoginController.swift */,
+				5567CC31207CB13000EA4DE8 /* RegistrationController.swift */,
+			);
+			path = "Login & Registration";
 			sourceTree = "<group>";
 		};
 		5E8D49D00E5CD77665CFE6DA /* Frameworks */ = {
@@ -282,10 +296,12 @@
 				5530527E2086280700C985BC /* CustomTabBar.swift in Sources */,
 				10B1082D203EF3C0003BF3EA /* CalenderViewController.swift in Sources */,
 				55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */,
+				55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */,
 				55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */,
 				108BBEDA202DAF6A00E5CBCA /* ViewController.swift in Sources */,
 				55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */,
 				55BD72602077695A004B7FC0 /* SearchTable.swift in Sources */,
+				55FF73F12088A21300C8CCEA /* NetworkService.swift in Sources */,
 				55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */,
 				5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */,
 				108BBED8202DAF6A00E5CBCA /* AppDelegate.swift in Sources */,
