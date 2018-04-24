@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MyProfileController: UIViewController {
+class MyProfileController: UIViewController{
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,6 +19,8 @@ class MyProfileController: UIViewController {
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
     
+    var container: ContainerViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +40,7 @@ class MyProfileController: UIViewController {
         profileImage.layer.borderColor = UIColor.black.cgColor
         
         let imageRef = ref.child("userInfo").child(uid).child("profileImage")
-        imageRef.observeSingleEvent(of: .value) { (snapshot) in
+        imageRef.observe(DataEventType.value) { (snapshot) in
             let imageUrlString = snapshot.value as? String
             //Her må vi sjekke om det ligger noe. hvis ikke crasher vi!
             let imageUrl = URL(string: imageUrlString!)
@@ -63,12 +65,34 @@ class MyProfileController: UIViewController {
         skillRef.observeSingleEvent(of: .value) { (snapshot) in
             self.SkillSelector.updateView(index: (snapshot.value as? Int)!)
         }
+        //Sets the container view to show description
+        container.segueIdentifierReceivedFromParent("Description")
         
     }//end viewDidLoad
+    
+    //stuff to set up the embedded views of reviews, and description
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "container" {
+            self.container = segue.destination as! ContainerViewController
+        }
+    }
+    
+
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+        
+    
+    @IBAction func changeContainerView(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            container.segueIdentifierReceivedFromParent("Description")
+        }
+        else {
+            container.segueIdentifierReceivedFromParent("Review")
+        }
     }
     
     

@@ -18,6 +18,14 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var userNames = [String]() //Array
     let uid = Auth.auth().currentUser?.uid
     
+    struct userList {
+        var uid: String
+        var distance: Double
+        var imgUrl: String
+        var avgRating: Double
+        var ratingsCount: Int
+        var name: String
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +70,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
 
-    
     /*
     // MARK: - Navigation
 
