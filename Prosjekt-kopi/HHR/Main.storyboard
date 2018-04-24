@@ -228,8 +228,16 @@ www.Skillseed.com</string>
                                 <connections>
                                     <action selector="SelectedSkill:" destination="Rd6-Cu-8TW" eventType="valueChanged" id="B4x-h0-qfv"/>
                                     <action selector="SelectedSkill:" destination="bfG-ZI-sek" eventType="valueChanged" id="KYU-S9-ZcF"/>
+                                    <action selector="skillChanged:" destination="76u-Wd-CCt" eventType="valueChanged" id="DgF-1w-adf"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select your skill!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4J-44-Kxj">
+                                <rect key="frame" x="125" y="164" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="msT-8D-DIX"/>

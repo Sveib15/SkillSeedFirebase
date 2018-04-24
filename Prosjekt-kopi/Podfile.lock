@@ -72,16 +72,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
-
-EXTERNAL SOURCES:
-  GeoFire:
-    :git: https://github.com/firebase/geofire-objc.git
-
-CHECKOUT OPTIONS:
-  GeoFire:
-    :commit: d79f8323efce29d780fc62df39485c50ffd0e6f4
-    :git: https://github.com/firebase/geofire-objc.git
+  - GeoFire
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -101,6 +92,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 05da323219a8ae1900511b2b4cf1ea4027ba0f08
+PODFILE CHECKSUM: bfa6255d30043246dea160a42ab6ed4becfa89c4
 
 COCOAPODS: 1.4.0
