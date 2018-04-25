@@ -25,6 +25,7 @@
 		556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D3D1A2083907E00B7818C /* MyProfileController.swift */; };
 		55923856208F1853006442AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55923855208F1853006442AB /* User.swift */; };
 		55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */; };
+		55B784C62090C39A0066C30A /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B784C52090C39A0066C30A /* UserList.swift */; };
 		55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C51207CF05C0015D289 /* InitialDescView.swift */; };
 		55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C53207E2BD50015D289 /* LoginController.swift */; };
 		55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BCF57A2085FB7A008AECCD /* SettingsController.swift */; };
@@ -57,6 +58,7 @@
 		556D3D1A2083907E00B7818C /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
 		55923855208F1853006442AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDescController.swift; sourceTree = "<group>"; };
+		55B784C52090C39A0066C30A /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		55BB3C51207CF05C0015D289 /* InitialDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDescView.swift; sourceTree = "<group>"; };
 		55BB3C53207E2BD50015D289 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55BCF57A2085FB7A008AECCD /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				55FF73F02088A21300C8CCEA /* NetworkService.swift */,
 				5530527F20862AF800C985BC /* Shared.swift */,
+				55B784C52090C39A0066C30A /* UserList.swift */,
 				55923855208F1853006442AB /* User.swift */,
 			);
 			path = "Shared Classes";
@@ -335,6 +338,7 @@
 				55DD554C208F3C6500C86D36 /* EmptySegue.swift in Sources */,
 				5530527E2086280700C985BC /* CustomTabBar.swift in Sources */,
 				10B1082D203EF3C0003BF3EA /* CalenderViewController.swift in Sources */,
+				55B784C62090C39A0066C30A /* UserList.swift in Sources */,
 				55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */,
 				550EF41F208F53BF00FA9E71 /* TeacherAvailabilityController.swift in Sources */,
 				55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */,

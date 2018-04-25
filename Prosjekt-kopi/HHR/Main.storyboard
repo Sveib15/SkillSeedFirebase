@@ -286,6 +286,10 @@ www.Skillseed.com</string>
                                                     <rect key="frame" x="15" y="15" width="70" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Reviews" translatesAutoresizingMaskIntoConstraints="NO" id="cR8-Cl-DTh">
+                                                    <rect key="frame" x="93" y="55" width="96" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>

@@ -15,20 +15,12 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     
     var ref:DatabaseReference?
-    var userNames = [String]() //Array
+    var users = [UserList]()
     let uid = Auth.auth().currentUser?.uid
     
-    struct userList {
-        var uid: String
-        var distance: Double
-        var imgUrl: String
-        var avgRating: Double
-        var ratingsCount: Int
-        var name: String
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         self.tableView.rowHeight = 100
         
@@ -37,19 +29,30 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         tableView.delegate = self
         tableView.dataSource = self
         
-        //Fills the name array from database
-        let nameRef = ref?.child("userInfo").child(uid!).child("Name")
-        nameRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-            let name = snapshot.value as? String
-            if let downloadedName = name {
-                self.userNames.append(downloadedName)
-                self.tableView.reloadData()
-            }
-        })
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadArray)), animated: true)
+        
+        fetchUsers()
+
+    } //end viewDidLoad
+    
+    func fetchUsers() {
+        ref?.child("userInfo").observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: Any] {
+                let user = UserList()
+                user.name = dictionary["Name"] as? String
+                
+                self.users.append(user)
+            }
+        }, withCancel: nil)
+        self.tableView.reloadData()
     }
     
     @objc func reloadArray() {
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
 
@@ -60,13 +63,14 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     //Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userNames.count
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProfileCell") as! SearchCell
         
-        cell.nameLabel.text = userNames[indexPath.row]
+        let user = users[indexPath.row]
+        cell.nameLabel.text = user.name
         return cell
     }
 

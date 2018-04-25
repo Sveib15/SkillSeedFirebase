@@ -23,7 +23,7 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
         
         // Do any additional setup after loading the view.
         
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(saveToDatabase)), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveToDatabase)), animated: true)
         
         //gets the userID as uid
         guard let uid = Auth.auth().currentUser?.uid
