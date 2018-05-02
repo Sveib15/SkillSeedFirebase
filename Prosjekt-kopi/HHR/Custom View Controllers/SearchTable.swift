@@ -18,6 +18,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     var ref: DatabaseReference!
     var GeoRef: GeoFire!
+    var GeoTraineeRef: GeoFire!
     var users = [userList]()
     var distanceArray = [tempDistance]()
     let uid = Auth.auth().currentUser?.uid
@@ -55,6 +56,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         //Initial setup
         ref = Database.database().reference()
         GeoRef = GeoFire(firebaseRef: ref.child("Locations").child(dbPath))
+        GeoTraineeRef = GeoFire(firebaseRef: ref.child("Locations").child("Trainee"))
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -65,15 +67,16 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         skillSortControl.addTarget(self, action: #selector(changeGeoRef), for: .valueChanged)
         
         self.tableView.addSubview(self.refreshControl)
-        fetchNearbyLocations(userID: uid!, dbPath: dbPath)
+        fetchNearbyLocations(userID: uid!)
         
     } //end viewDidLoad
 
-    func fetchNearbyLocations (userID: String, dbPath: String) {
+    func fetchNearbyLocations (userID: String) {
         
         var myLoc = CLLocation()
-            (self.GeoRef.getLocationForKey(userID, withCallback: { (location, error) in
+            (self.GeoTraineeRef.getLocationForKey(userID, withCallback: { (location, error) in
             if (error != nil) {
+                
                 print("An error occured in fetchNearbyLocations: \(String(describing: error?.localizedDescription))")
             }
             else if (location != nil) {
@@ -86,7 +89,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     if key == Auth.auth().currentUser?.uid {
                         print("crap")
                     }
-                    else{
+                    else {
                     self.appendUserInfo(userKey: key, distanceToAppend: distanceFromUser)
                     }
                 })
@@ -117,7 +120,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
 
-        self.fetchNearbyLocations(userID: self.uid!, dbPath: self.dbPath)
+        self.fetchNearbyLocations(userID: self.uid!)
         print("=========================================")
         print("============ Array Prints ===============")
         print(self.users)
