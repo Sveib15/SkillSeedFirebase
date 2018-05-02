@@ -194,6 +194,20 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let distanceInKm = users[indexPath.row].distance / 1000
         let distanceStr = String(format: "%.1f", distanceInKm)
         cell.distanceLabel.text = "\(distanceStr) km"
+        
+        //Image loading
+        cell.profileImage.image = UIImage(named: "Profile pic")
+        
+        let imageUrl = URL(string: users[indexPath.row].imageUrl!)
+        let networkService = NetworkService(url: imageUrl!)
+        networkService.downloadImage { (data) in
+            let image = UIImage(data: data as Data)
+            DispatchQueue.main.async {
+                cell.profileImage.image = image
+            }
+        }
+        
+
     
         //sets the profile images to be round
         cell.profileImage.layer.borderWidth = 1
@@ -210,6 +224,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         performSegue(withIdentifier: "showProfileSegue", sender: cell)
     }
+
     
     
     override func viewDidAppear(_ animated: Bool) {
