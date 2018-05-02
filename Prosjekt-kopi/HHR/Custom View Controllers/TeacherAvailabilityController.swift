@@ -14,11 +14,13 @@ import CoreLocation
 class TeacherAvailabilityController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var skillSelector: CustomSegmentControl!
+    @IBOutlet weak var deleteMeButton: UIButton!
     
     var ref: DatabaseReference!
     var GeoRef: GeoFire!
     var locationManager = CLLocationManager()
     var selectedSkill = 0
+    let uid = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,12 @@ class TeacherAvailabilityController: UIViewController, CLLocationManagerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        deleteMeButton.layer.masksToBounds = false
+        deleteMeButton.layer.cornerRadius = deleteMeButton.frame.height/2
+        deleteMeButton.clipsToBounds = true
+        
+        deleteMeButton.addTarget(self, action: #selector(deleteFromDatabase), for: .touchUpInside)
     }// End viewDidLoad
     
     func setMyLocation(userId: String, dbBranch: GeoFire){
@@ -89,6 +97,35 @@ class TeacherAvailabilityController: UIViewController, CLLocationManagerDelegate
     
     @IBAction func skillChanged(_ sender: CustomSegmentControl) {
         selectedSkill = sender.selectedSegmentIndex
+    }
+    
+    @objc func deleteFromDatabase() {
+        
+        let refreshAlert = UIAlertController(title: "Delete your Location?", message: "Do you really want to be deleted?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            
+            if Auth.auth().currentUser != nil {
+                do {
+                    let beginnerRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Beginner"))
+                    let goodRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Good"))
+                    let adeptRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Adept"))
+                    let eliteRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Elite"))
+                    
+                    beginnerRef.removeKey(self.uid!)
+                    goodRef.removeKey(self.uid!)
+                    adeptRef.removeKey(self.uid!)
+                    eliteRef.removeKey(self.uid!)
+                }
+            }
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Nothing Happened")
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+        
     }
     
 
