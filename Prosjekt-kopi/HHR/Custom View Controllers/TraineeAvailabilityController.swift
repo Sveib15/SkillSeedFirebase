@@ -30,6 +30,7 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
         // Do any additional setup after loading the view.
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveToDatabase)), animated: true)
         
+        
         ref = Database.database().reference()
         GeoRef = GeoFire(firebaseRef: ref.child("Locations"))
         

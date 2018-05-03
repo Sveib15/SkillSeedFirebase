@@ -9,6 +9,7 @@
 import UIKit
 
 open class ContainerViewController: UIViewController {
+    //Gets a Uid to pass
     //Manipulating container views
     fileprivate weak var viewController : UIViewController!
     //Keeping track of containerViews
@@ -33,7 +34,6 @@ open class ContainerViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     open override func viewDidAppear(_ animated: Bool) {
         if let identifier = firstLinkedSubView{

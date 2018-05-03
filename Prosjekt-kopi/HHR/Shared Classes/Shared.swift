@@ -11,6 +11,7 @@ import UIKit
 public class Shared {
     
     public var tabBarIndex: Int = 0
+    public var currentForeignUid: String = ""
     public static var shared = Shared()
 
     /*

@@ -11,15 +11,17 @@ import Firebase
 import CoreLocation
 import GeoFire
 
-class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var skillSortControl: UISegmentedControl!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var ref: DatabaseReference!
     var GeoRef: GeoFire!
     var GeoTraineeRef: GeoFire!
     var users = [userList]()
+    var filteredUsers = [userList]()
     var distanceArray = [tempDistance]()
     let uid = Auth.auth().currentUser?.uid
     var dbPath: String = "Beginner"
@@ -59,6 +61,8 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         GeoTraineeRef = GeoFire(firebaseRef: ref.child("Locations").child("Trainee"))
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.search
         
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadArray)), animated: true)
         let navigationBarAppearace = UINavigationBar.appearance()
@@ -80,6 +84,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 print("An error occured in fetchNearbyLocations: \(String(describing: error?.localizedDescription))")
             }
             else if (location != nil) {
+                
                 myLoc = location!
                 //sets the radius - at 100 km
                 let circleQuery = self.GeoRef.query(at: myLoc, withRadius: 100.0)
@@ -91,6 +96,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     }
                     else {
                     self.appendUserInfo(userKey: key, distanceToAppend: distanceFromUser)
+                        self.filteredUsers = self.users
                     }
                 })
             }
@@ -105,6 +111,9 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: AnyObject] {
                         self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: 0))
+                        self.filteredUsers = self.users
+                        //self.filteredUsers.sort(by: {$0.distance < $1.distance})
+                        //fucks with the profile images, because it changes the indecies
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -119,12 +128,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
-
         self.fetchNearbyLocations(userID: self.uid!)
-        print("=========================================")
-        print("============ Array Prints ===============")
-        print(self.users)
-        print("=========================================")
         self.refreshControl.endRefreshing()
     }
 
@@ -181,24 +185,38 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
     )}
     
+    //Search Bar Functions
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            filteredUsers = users
+            tableView.reloadData()
+            return
+        }
+        
+        filteredUsers = users.filter({ (userList) -> Bool in
+            (userList.name?.lowercased().contains(searchText.lowercased()))!
+        })
+        tableView.reloadData()
+    }
+    
     //Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return filteredUsers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProfileCell") as! SearchCell
         
-        cell.nameLabel.text = users[indexPath.row].name
+        cell.nameLabel.text = filteredUsers[indexPath.row].name
         
-        let distanceInKm = users[indexPath.row].distance / 1000
+        let distanceInKm = filteredUsers[indexPath.row].distance / 1000
         let distanceStr = String(format: "%.1f", distanceInKm)
         cell.distanceLabel.text = "\(distanceStr) km"
         
         //Image loading
         cell.profileImage.image = UIImage(named: "Profile pic")
         
-        let imageUrl = URL(string: users[indexPath.row].imageUrl!)
+        let imageUrl = URL(string: filteredUsers[indexPath.row].imageUrl!)
         let networkService = NetworkService(url: imageUrl!)
         networkService.downloadImage { (data) in
             let image = UIImage(data: data as Data)
@@ -207,8 +225,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         }
         
-
-    
         //sets the profile images to be round
         cell.profileImage.layer.borderWidth = 1
         cell.profileImage.layer.masksToBounds = false
@@ -221,10 +237,12 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        performSegue(withIdentifier: "showProfileSegue", sender: cell)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ForeignProfileController
+        destinationVC.foreignUid = filteredUsers[self.tableView.indexPathForSelectedRow!.row].databaseKey
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {

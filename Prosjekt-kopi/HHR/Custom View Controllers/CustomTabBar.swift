@@ -17,6 +17,10 @@ class CustomTabBar: UITabBarController {
         super.viewDidLoad()
         
         self.selectedIndex = chosenIndex
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.darkGray
+        
+        
 
         // Do any additional setup after loading the view.
     }

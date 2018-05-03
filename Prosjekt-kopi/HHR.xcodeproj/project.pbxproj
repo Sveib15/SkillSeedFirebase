@@ -26,6 +26,8 @@
 		556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D3D1A2083907E00B7818C /* MyProfileController.swift */; };
 		55923856208F1853006442AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55923855208F1853006442AB /* User.swift */; };
 		55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */; };
+		55B6B842209AF7BA00615DEC /* ForeignProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */; };
+		55B6B844209B0F8800615DEC /* DisplayForeignDescController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B843209B0F8800615DEC /* DisplayForeignDescController.swift */; };
 		55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C51207CF05C0015D289 /* InitialDescView.swift */; };
 		55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C53207E2BD50015D289 /* LoginController.swift */; };
 		55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BCF57A2085FB7A008AECCD /* SettingsController.swift */; };
@@ -59,6 +61,8 @@
 		556D3D1A2083907E00B7818C /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
 		55923855208F1853006442AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDescController.swift; sourceTree = "<group>"; };
+		55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignProfileController.swift; sourceTree = "<group>"; };
+		55B6B843209B0F8800615DEC /* DisplayForeignDescController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayForeignDescController.swift; sourceTree = "<group>"; };
 		55BB3C51207CF05C0015D289 /* InitialDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDescView.swift; sourceTree = "<group>"; };
 		55BB3C53207E2BD50015D289 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55BCF57A2085FB7A008AECCD /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -165,11 +169,13 @@
 			children = (
 				108BBED9202DAF6A00E5CBCA /* ViewControllerSuper.swift */,
 				55BD725F2077695A004B7FC0 /* SearchTable.swift */,
+				55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */,
 				550EF41E208F53BF00FA9E71 /* TeacherAvailabilityController.swift */,
 				55305279208613BC00C985BC /* EditDescriptioController.swift */,
 				55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */,
 				555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */,
 				55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */,
+				55B6B843209B0F8800615DEC /* DisplayForeignDescController.swift */,
 				553052812087462C00C985BC /* EditSkillController.swift */,
 				556D3D1A2083907E00B7818C /* MyProfileController.swift */,
 				5530527D2086280700C985BC /* CustomTabBar.swift */,
@@ -332,6 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B6B844209B0F8800615DEC /* DisplayForeignDescController.swift in Sources */,
+				55B6B842209AF7BA00615DEC /* ForeignProfileController.swift in Sources */,
 				5530528020862AF800C985BC /* Shared.swift in Sources */,
 				5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */,
 				5530527A208613BC00C985BC /* EditDescriptioController.swift in Sources */,
