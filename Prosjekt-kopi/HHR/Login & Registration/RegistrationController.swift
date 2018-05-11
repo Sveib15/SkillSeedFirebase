@@ -126,7 +126,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
         let imageName = NSUUID().uuidString
         let profileImageRef = storageRef.child("\(imageName).png")
         
-        if let uploadImage = UIImagePNGRepresentation(self.profileImage.image!) {
+        if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.07) {
             profileImageRef.putData(uploadImage, metadata: nil, completion: {
                 (metadata, error) in
                 if error != nil {

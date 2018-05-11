@@ -87,6 +87,14 @@ class ForeignProfileController: UIViewController {
         }
     }
     
+    @IBAction func segueToChat(_ sender: Any) {
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.navigationItem.title = nameLabel.text
+        chatLogController.currentForeignUID = foreignUid
+        
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

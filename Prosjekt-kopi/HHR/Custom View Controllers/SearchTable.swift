@@ -214,8 +214,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.distanceLabel.text = "\(distanceStr) km"
         
         //Image loading
-        cell.profileImage.image = UIImage(named: "Profile pic")
-        
         let imageUrl = URL(string: filteredUsers[indexPath.row].imageUrl!)
         let networkService = NetworkService(url: imageUrl!)
         networkService.downloadImage { (data) in
@@ -235,7 +233,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

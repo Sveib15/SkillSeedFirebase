@@ -53,9 +53,7 @@ class TeacherAvailabilityController: UIViewController, CLLocationManagerDelegate
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             
             currentLocation = locationManager.location
-            print("FØRSTE SHID + \(currentLocation.coordinate.latitude) + HER ER DEN ANDRE SHIDEN + \(currentLocation.coordinate.longitude) ")
-            
-            
+    
             dbBranch.setLocation(CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude), forKey: userId) { (error) in
                 if (error != nil) {
                     print("An error occured: \(error ?? "" as! Error)")
