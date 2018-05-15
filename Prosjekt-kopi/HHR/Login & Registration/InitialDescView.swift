@@ -14,17 +14,27 @@ class InitialDescView: UIViewController {
     var ref: DatabaseReference!
 
     @IBOutlet weak var descEdited: UITextView!
+    @IBOutlet weak var wordCounter: UILabel!
     var initialDesc : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = Database.database().reference()
+        self.descEdited.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func checkDescLenght (text: String, length: Int) -> Bool {
+        if text.count <= length {
+            return true
+        } else {
+            return false
+        }
     }
     
     //saves, and dismisses the view
@@ -36,6 +46,7 @@ class InitialDescView: UIViewController {
             else {
                 return
         }
+        if checkDescLenght(text: initialDesc, length: 500) {
         //Pushes info to database
         let value = ["Description": initialDesc]
         ref?.child("userInfo").child(uid).updateChildValues(value, withCompletionBlock: {(err, ref) in
@@ -50,6 +61,12 @@ class InitialDescView: UIViewController {
 
         //Last thing before class is destroyed
         dismiss(animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Too long description", message: "Your description needs to be 500 characters or less.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     

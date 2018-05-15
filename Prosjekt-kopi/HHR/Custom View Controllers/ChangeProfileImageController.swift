@@ -92,24 +92,24 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
         let imageName = NSUUID().uuidString
         let profileImageRef = storageRef.child("\(imageName).png")
     
-        if let uploadImage = UIImagePNGRepresentation(self.profileImage.image!) {
-        profileImageRef.putData(uploadImage, metadata: nil, completion: {
-            (metadata, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                let values = ["profileImage" : profileImageUrl]
-                self.ref.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
-                    //Errorhandling
-                    if err != nil {
-                        print(err!)
-                        return
-                    }
-                })
-            }
-        }) // end putdata
+        if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.07) {
+            profileImageRef.putData(uploadImage, metadata: nil, completion: {
+                (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["profileImage" : profileImageUrl]
+                    self.ref.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
+                        //Errorhandling
+                        if err != nil {
+                            print(err!)
+                            return
+                        }
+                    })
+                }
+            }) // end putdata
         }
     Shared.shared.tabBarIndex = 3
     let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")

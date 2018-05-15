@@ -32,6 +32,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var containerViewBottomAnchor: NSLayoutConstraint?
     var currentForeignUID: String?
     var messagesArray = [messages]()
+    var filteredArray = [messages]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +43,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.backgroundColor? = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.keyboardDismissMode = .interactive
-        
+                
         setupInputComponents()
         setupKeyboardObservers()
         
         ref = Database.database().reference()
+        observeMessages()
         
         ref.child("userInfo").child(currentForeignUID!).child("Name").observeSingleEvent(of: .value, with: { (snapshot) in
             self.navigationItem.title = snapshot.value as? String
@@ -74,6 +76,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 }
                 if chatPartnerID == self.currentForeignUID {
                     self.messagesArray.append(message)
+                    self.filteredArray = self.messagesArray
                     
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
@@ -93,9 +96,45 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let message = messagesArray[indexPath.item]
         cell.textView.text = message.text
         
+       setUpCell(cell: cell, message: message)
+        
         //Sets width of the bubbleview
         cell.bubbleWidthAnchor?.constant = estimatedFrameForText(text: message.text!).width + 32
         return cell
+    }
+    
+    private func setUpCell(cell: ChatMessageCell, message: messages) {
+        
+        var imageURL: URL?
+        ref.child("userInfo").child(message.fromID!).child("profileImage").observeSingleEvent(of: .value, with: { (snapshot) in
+            imageURL = URL(string: snapshot.value as! String)
+            
+            let networkService = NetworkService(url: imageURL!)
+            networkService.downloadImage { (data) in
+                let image = UIImage(data: data as Data)
+                DispatchQueue.main.async {
+                    cell.profileImageView.image = image
+                }
+            }
+        }, withCancel: nil)
+        
+        if message.fromID == Auth.auth().currentUser?.uid {
+            //outgoing blue
+            cell.bubbleView.backgroundColor = ChatMessageCell.bluecolor
+            cell.textView.textColor = UIColor.white
+            
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+            cell.profileImageView.isHidden = true
+        } else {
+            //incoming gray
+            cell.bubbleView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+            cell.textView.textColor = UIColor.black
+            
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+            cell.profileImageView.isHidden = false
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -123,7 +162,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupKeyboardObservers()
-        observeMessages()
     }
     
     func setupKeyboardObservers() {

@@ -32,6 +32,7 @@
 		55B6B84820A316CA00615DEC /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B84720A316CA00615DEC /* ChatCell.swift */; };
 		55B6B84A20A31E6900615DEC /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B84920A31E6900615DEC /* ChatLogController.swift */; };
 		55B6B84C20A5AD0B00615DEC /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B84B20A5AD0A00615DEC /* ChatMessageCell.swift */; };
+		55B6B85420AAEC5400615DEC /* HHRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B85320AAEC5400615DEC /* HHRTests.swift */; };
 		55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C51207CF05C0015D289 /* InitialDescView.swift */; };
 		55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB3C53207E2BD50015D289 /* LoginController.swift */; };
 		55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BCF57A2085FB7A008AECCD /* SettingsController.swift */; };
@@ -42,6 +43,16 @@
 		55DD5550208F49B800C86D36 /* ChangeProfileImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */; };
 		55FF73F12088A21300C8CCEA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FF73F02088A21300C8CCEA /* NetworkService.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55B6B85620AAEC5400615DEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 108BBECC202DAF6A00E5CBCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 108BBED3202DAF6A00E5CBCA;
+			remoteInfo = HHR;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		108BBED4202DAF6A00E5CBCA /* HHR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +82,9 @@
 		55B6B84720A316CA00615DEC /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		55B6B84920A31E6900615DEC /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		55B6B84B20A5AD0A00615DEC /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		55B6B85120AAEC5400615DEC /* HHRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HHRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B6B85320AAEC5400615DEC /* HHRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHRTests.swift; sourceTree = "<group>"; };
+		55B6B85520AAEC5400615DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55BB3C51207CF05C0015D289 /* InitialDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDescView.swift; sourceTree = "<group>"; };
 		55BB3C53207E2BD50015D289 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55BCF57A2085FB7A008AECCD /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -93,6 +107,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55B6B84E20AAEC5400615DEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				108BBED6202DAF6A00E5CBCA /* HHR */,
+				55B6B85220AAEC5400615DEC /* HHRTests */,
 				108BBED5202DAF6A00E5CBCA /* Products */,
 				0505017964161B8B86294ED6 /* Pods */,
 				5E8D49D00E5CD77665CFE6DA /* Frameworks */,
@@ -119,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				108BBED4202DAF6A00E5CBCA /* HHR.app */,
+				55B6B85120AAEC5400615DEC /* HHRTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +185,15 @@
 				5567CC31207CB13000EA4DE8 /* RegistrationController.swift */,
 			);
 			path = "Login & Registration";
+			sourceTree = "<group>";
+		};
+		55B6B85220AAEC5400615DEC /* HHRTests */ = {
+			isa = PBXGroup;
+			children = (
+				55B6B85320AAEC5400615DEC /* HHRTests.swift */,
+				55B6B85520AAEC5400615DEC /* Info.plist */,
+			);
+			path = HHRTests;
 			sourceTree = "<group>";
 		};
 		55DD554D208F492A00C86D36 /* Shared Classes */ = {
@@ -227,19 +259,42 @@
 			productReference = 108BBED4202DAF6A00E5CBCA /* HHR.app */;
 			productType = "com.apple.product-type.application";
 		};
+		55B6B85020AAEC5400615DEC /* HHRTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55B6B85820AAEC5400615DEC /* Build configuration list for PBXNativeTarget "HHRTests" */;
+			buildPhases = (
+				55B6B84D20AAEC5400615DEC /* Sources */,
+				55B6B84E20AAEC5400615DEC /* Frameworks */,
+				55B6B84F20AAEC5400615DEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55B6B85720AAEC5400615DEC /* PBXTargetDependency */,
+			);
+			name = HHRTests;
+			productName = HHRTests;
+			productReference = 55B6B85120AAEC5400615DEC /* HHRTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		108BBECC202DAF6A00E5CBCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Helping Hand";
 				TargetAttributes = {
 					108BBED3202DAF6A00E5CBCA = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					55B6B85020AAEC5400615DEC = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 108BBED3202DAF6A00E5CBCA;
 					};
 				};
 			};
@@ -257,6 +312,7 @@
 			projectRoot = "";
 			targets = (
 				108BBED3202DAF6A00E5CBCA /* HHR */,
+				55B6B85020AAEC5400615DEC /* HHRTests */,
 			);
 		};
 /* End PBXProject section */
@@ -270,6 +326,13 @@
 				10A9EAF020515AE2001CAAC8 /* GoogleService-Info.plist in Resources */,
 				108BBEE2202DAF6A00E5CBCA /* LaunchScreen.storyboard in Resources */,
 				108BBEDF202DAF6A00E5CBCA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55B6B84F20AAEC5400615DEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +445,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55B6B84D20AAEC5400615DEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B6B85420AAEC5400615DEC /* HHRTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55B6B85720AAEC5400615DEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 108BBED3202DAF6A00E5CBCA /* HHR */;
+			targetProxy = 55B6B85620AAEC5400615DEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		108BBEE0202DAF6A00E5CBCA /* LaunchScreen.storyboard */ = {
@@ -539,6 +618,46 @@
 			};
 			name = Release;
 		};
+		55B6B85920AAEC5400615DEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KV4P7367J3;
+				INFOPLIST_FILE = HHRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Skillseed.HHRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HHR.app/HHR";
+			};
+			name = Debug;
+		};
+		55B6B85A20AAEC5400615DEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KV4P7367J3;
+				INFOPLIST_FILE = HHRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Skillseed.HHRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HHR.app/HHR";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -556,6 +675,15 @@
 			buildConfigurations = (
 				108BBEE7202DAF6A00E5CBCA /* Debug */,
 				108BBEE8202DAF6A00E5CBCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55B6B85820AAEC5400615DEC /* Build configuration list for PBXNativeTarget "HHRTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55B6B85920AAEC5400615DEC /* Debug */,
+				55B6B85A20AAEC5400615DEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
