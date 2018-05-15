@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class InitialDescView: UIViewController {
+class InitialDescView: UIViewController, UITextViewDelegate {
     
     var ref: DatabaseReference!
 
@@ -22,6 +22,7 @@ class InitialDescView: UIViewController {
         
         ref = Database.database().reference()
         self.descEdited.becomeFirstResponder()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +30,7 @@ class InitialDescView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func checkDescLenght (text: String, length: Int) -> Bool {
+    func checkDescLenght(text: String, length: Int) -> Bool {
         if text.count <= length {
             return true
         } else {
@@ -69,8 +70,22 @@ class InitialDescView: UIViewController {
         }
     }
     
-    
+    //TextView functions
+    func checkRemainingChars() {
+        let charsInText = descEdited.text.count
+        wordCounter.text = "\(charsInText)/500"
+        
+        if charsInText > 500 {
+            wordCounter.textColor = UIColor.red
+        } else {
+            wordCounter.textColor = UIColor.lightGray
 
+        }
+
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        checkRemainingChars()
+    }
     /*
     // MARK: - Navigation
 

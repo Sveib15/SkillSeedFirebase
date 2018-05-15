@@ -12,16 +12,23 @@ import Firebase
 class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var ref: DatabaseReference!
     var messagesArray = [messages]()
     var messagesDictionary = [String: messages]()
+    var messagesArrayFiltered = [messages]()
+    var users = [userList]()
 
     struct messages {
         var fromID: String?
         var toID: String?
         var text: String?
         var timestamp: NSNumber?
+    }
+    
+    struct userList {
+        var name: String?
     }
 
     //Pull to refresh
@@ -41,9 +48,16 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.search
         self.tableView.addSubview(self.refreshControl)
         
         observeUserMessages()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        observeUserMessages()
+
     }
     
     func observeUserMessages() {
@@ -77,6 +91,7 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.messagesArray.sort(by: { (message1, message2) -> Bool in
                         return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
                     })
+                    self.messagesArrayFiltered = self.messagesArray
                 }
                 self.timer?.invalidate()
                 self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
@@ -93,10 +108,10 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messagesArray.count
+        return messagesArrayFiltered.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let message = messagesArray[indexPath.row]
+        let message = messagesArrayFiltered[indexPath.row]
         
         let chatPartnerID: String?
         if message.fromID == Auth.auth().currentUser?.uid {
@@ -111,7 +126,7 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as! ChatCell
-        let message = messagesArray[indexPath.row]
+        let message = messagesArrayFiltered[indexPath.row]
         
         var imageURL: URL?
         
@@ -125,8 +140,11 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if let id = chatPartnerID {
             ref.child("userInfo").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                 let dictionary = snapshot.value as? [String: AnyObject]
-                cell.nameLabel.text = dictionary!["Name"] as? String
+                
+                self.users.append(userList.init(name: dictionary!["Name"] as? String))
                 imageURL = URL(string: (dictionary!["profileImage"] as? String)!)
+                
+                cell.nameLabel.text = self.users[indexPath.row].name
                 
                 let networkService = NetworkService(url: imageURL!)
                 networkService.downloadImage { (data) in
@@ -163,5 +181,4 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
-    
 }

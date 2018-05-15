@@ -171,7 +171,8 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
             //return result
         }
         )}
-        
+    
+    
     
     
     override func didReceiveMemoryWarning() {

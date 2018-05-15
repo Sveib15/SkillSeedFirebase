@@ -42,6 +42,7 @@
 		55DD554C208F3C6500C86D36 /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD554B208F3C6500C86D36 /* EmptySegue.swift */; };
 		55DD5550208F49B800C86D36 /* ChangeProfileImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */; };
 		55FF73F12088A21300C8CCEA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FF73F02088A21300C8CCEA /* NetworkService.swift */; };
+		D2ECB4FC91BB59FA09E2673F /* Pods_HHRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF39DF1EF081D91C67255F4 /* Pods_HHRTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012847ADD2F4D402AF61466C /* Pods-HHRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests.release.xcconfig"; sourceTree = "<group>"; };
 		108BBED4202DAF6A00E5CBCA /* HHR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		108BBED7202DAF6A00E5CBCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108BBED9202DAF6A00E5CBCA /* ViewControllerSuper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSuper.swift; sourceTree = "<group>"; };
@@ -64,7 +66,9 @@
 		10A9EAED205153AA001CAAC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		10A9EAEF20515AE1001CAAC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		1DF39DF1EF081D91C67255F4 /* Pods_HHRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HHRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B2923F0ABFDF96B4DEF4BD /* Pods-HHR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHR.release.xcconfig"; path = "Pods/Target Support Files/Pods-HHR/Pods-HHR.release.xcconfig"; sourceTree = "<group>"; };
+		4306003804EDD0E929CAD6F9 /* Pods-HHRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests.debug.xcconfig"; sourceTree = "<group>"; };
 		550EF41E208F53BF00FA9E71 /* TeacherAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAvailabilityController.swift; sourceTree = "<group>"; };
 		55305279208613BC00C985BC /* EditDescriptioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptioController.swift; sourceTree = "<group>"; };
 		5530527D2086280700C985BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2ECB4FC91BB59FA09E2673F /* Pods_HHRTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +127,8 @@
 			children = (
 				97E5CB94A9DD2D7889E6C10F /* Pods-HHR.debug.xcconfig */,
 				21B2923F0ABFDF96B4DEF4BD /* Pods-HHR.release.xcconfig */,
+				4306003804EDD0E929CAD6F9 /* Pods-HHRTests.debug.xcconfig */,
+				012847ADD2F4D402AF61466C /* Pods-HHRTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -232,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				7088CC563D82F34ECA1A9D6B /* Pods_HHR.framework */,
+				1DF39DF1EF081D91C67255F4 /* Pods_HHRTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -263,9 +271,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55B6B85820AAEC5400615DEC /* Build configuration list for PBXNativeTarget "HHRTests" */;
 			buildPhases = (
+				0A98B7BF23A4D9C48F9CA035 /* [CP] Check Pods Manifest.lock */,
 				55B6B84D20AAEC5400615DEC /* Sources */,
 				55B6B84E20AAEC5400615DEC /* Frameworks */,
 				55B6B84F20AAEC5400615DEC /* Resources */,
+				88EC739B9E4A720FE5F883F2 /* [CP] Embed Pods Frameworks */,
+				1509B819CFF265F9FD5F6BEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,7 +295,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Helping Hand";
 				TargetAttributes = {
 					108BBED3202DAF6A00E5CBCA = {
@@ -339,6 +350,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A98B7BF23A4D9C48F9CA035 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HHRTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1509B819CFF265F9FD5F6BEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		391FB848A0F67D231DE86C11 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,6 +396,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HHR/Pods-HHR-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88EC739B9E4A720FE5F883F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8DC45A9159DF48D33C63850 /* [CP] Embed Pods Frameworks */ = {
@@ -490,6 +568,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -497,6 +576,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -525,6 +605,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -549,6 +633,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -556,6 +641,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -578,6 +664,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -620,6 +710,7 @@
 		};
 		55B6B85920AAEC5400615DEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4306003804EDD0E929CAD6F9 /* Pods-HHRTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -627,6 +718,15 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KV4P7367J3;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources\n\n\n",
+				);
 				INFOPLIST_FILE = HHRTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -640,6 +740,7 @@
 		};
 		55B6B85A20AAEC5400615DEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 012847ADD2F4D402AF61466C /* Pods-HHRTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;

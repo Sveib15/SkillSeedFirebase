@@ -16,4 +16,16 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'GeoFire'
 
+	target 'HHRTests' do
+        	inherit! :search_paths
+        	pod 'Firebase/Core'
+		pod 'Firebase/Auth'
+		pod 'Firebase/Database'
+		pod 'Firebase/Storage'
+		pod 'FBSDKLoginKit'
+		pod 'FBSDKCoreKit'
+		pod 'FBSDKShareKit'
+		pod 'GeoFire'
+    end
+
 end
