@@ -18,19 +18,15 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var messagesArray = [messages]()
     var messagesDictionary = [String: messages]()
     var messagesArrayFiltered = [messages]()
-    var users = [userList]()
 
     struct messages {
         var fromID: String?
         var toID: String?
         var text: String?
         var timestamp: NSNumber?
-    }
-    
-    struct userList {
         var name: String?
     }
-
+    
     //Pull to refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -75,7 +71,7 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
             messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 let dictionary = snapshot.value as? [String: AnyObject]
-                let message = messages.init(fromID: (dictionary!["fromID"] as! String), toID: (dictionary!["toID"] as! String), text: (dictionary!["text"] as! String), timestamp: (dictionary!["timestamp"] as! NSNumber))
+                var message = messages.init(fromID: (dictionary!["fromID"] as! String), toID: (dictionary!["toID"] as! String), text: (dictionary!["text"] as! String), timestamp: (dictionary!["timestamp"] as! NSNumber), name: "")
                 
                 let chatPartnerID: String?
                 if message.fromID == Auth.auth().currentUser?.uid {
@@ -85,16 +81,24 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
                 
                 if let chatPartnerID = chatPartnerID {
-                    self.messagesDictionary[chatPartnerID] = message
-                    
-                    self.messagesArray = Array(self.messagesDictionary.values)
-                    self.messagesArray.sort(by: { (message1, message2) -> Bool in
-                        return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
-                    })
-                    self.messagesArrayFiltered = self.messagesArray
+                    self.ref.child("userInfo").child(chatPartnerID).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let dictionary = snapshot.value as? [String: AnyObject]
+                        message.name = (dictionary!["Name"] as! String)
+                       
+                        self.messagesDictionary[chatPartnerID] = message
+                        
+                        self.messagesArray = Array(self.messagesDictionary.values)
+                        self.messagesArray.sort(by: { (message1, message2) -> Bool in
+                            return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
+                        })
+                        self.messagesArrayFiltered = self.messagesArray
+                        print(self.messagesArrayFiltered)
+                        
+                        self.timer?.invalidate()
+                        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+                        
+                    }, withCancel: nil)
                 }
-                self.timer?.invalidate()
-                self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
             }, withCancel: nil)
         }, withCancel: nil)
     }
@@ -141,10 +145,9 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
             ref.child("userInfo").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                 let dictionary = snapshot.value as? [String: AnyObject]
                 
-                self.users.append(userList.init(name: dictionary!["Name"] as? String))
                 imageURL = URL(string: (dictionary!["profileImage"] as? String)!)
                 
-                cell.nameLabel.text = self.users[indexPath.row].name
+                cell.nameLabel.text = message.name
                 
                 let networkService = NetworkService(url: imageURL!)
                 networkService.downloadImage { (data) in
@@ -180,5 +183,18 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
         observeUserMessages()
         tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    //SearchBar Functions
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            messagesArrayFiltered = messagesArray
+            tableView.reloadData()
+            return
+        }
+        messagesArrayFiltered = messagesArray.filter({ (messages) -> Bool in
+            (messages.name?.lowercased().contains(searchText.lowercased()))!
+        })
+        tableView.reloadData()
     }
 }

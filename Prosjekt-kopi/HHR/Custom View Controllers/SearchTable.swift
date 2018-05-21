@@ -71,12 +71,50 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         skillSortControl.addTarget(self, action: #selector(changeGeoRef), for: .valueChanged)
         
         self.tableView.addSubview(self.refreshControl)
+        
         fetchNearbyLocations(userID: uid!)
         
+        checkTraineeAvailability(userID: uid!) { (success) in
+            if success {
+                //Bruker finnes allerede
+            } else {
+                let refreshAlert = UIAlertController(title: "Welcome!", message: "Your user has not yet set its location. Do you wish to do so now? You can change this at any time", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Set Location", style: .default, handler: { (action: UIAlertAction!) in
+                    let traineeRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Trainee"))
+                    let TraineeController = TraineeAvailabilityController()
+                    TraineeController.setMyLocation(userId: self.uid!, dbBranch: traineeRef)
+                }))
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    //Nothing happens
+                }))
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+            }
+        }
+        
     } //end viewDidLoad
+    
+    func checkTraineeAvailability (userID: String, completion: @escaping ((_ success: Bool) -> Void)){
+            self.ref.child("Locations").child("Trainee").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.hasChild(userID){
+                    completion(snapshot.hasChild(userID))
+                    //return true
+                }else{
+                    completion(false)
+                    //return false
+                }
+                //return result
+            }
+        )}
+    
+    
 
     func fetchNearbyLocations (userID: String) {
         
+        users = [userList]()
         var myLoc = CLLocation()
             (self.GeoTraineeRef.getLocationForKey(userID, withCallback: { (location, error) in
             if (error != nil) {
@@ -105,14 +143,13 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func appendUserInfo (userKey: String, distanceToAppend: Double) {
-        users = [userList]()
         checkName(userID: userKey) { (success) in
             if success {
                 self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: AnyObject] {
                         self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: 0))
                         self.filteredUsers = self.users
-                        //self.filteredUsers.sort(by: {$0.distance < $1.distance})
+                        self.filteredUsers.sort(by: {$0.distance < $1.distance})
                         //fucks with the profile images, because it changes the indecies
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -128,7 +165,24 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
-        self.fetchNearbyLocations(userID: self.uid!)
+        
+        ref.child("Locations").child(dbPath).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.hasChildren() {
+                self.fetchNearbyLocations(userID: self.uid!)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            } else {
+                self.users.removeAll()
+                self.filteredUsers = self.users
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }, withCancel: nil)
+        
         self.refreshControl.endRefreshing()
     }
 
@@ -201,10 +255,26 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     //Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredUsers.count
+        
+        var returnValue: Int
+        
+        if filteredUsers.isEmpty {
+            returnValue = 1
+        } else {
+            returnValue = filteredUsers.count
+        }
+        return returnValue
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var retCell: UITableViewCell?
+        
+        if filteredUsers.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoResultsCell")
+            retCell = cell
+        } else {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProfileCell") as! SearchCell
         
         cell.nameLabel.text = filteredUsers[indexPath.row].name
@@ -229,7 +299,11 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height/2
         cell.profileImage.clipsToBounds = true
         cell.profileImage.layer.borderColor = UIColor.black.cgColor
-        return cell
+            
+        retCell = cell
+        }
+        
+        return retCell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
