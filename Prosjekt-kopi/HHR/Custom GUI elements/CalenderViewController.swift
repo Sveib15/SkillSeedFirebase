@@ -12,19 +12,16 @@ import UIKit
 
 class CalendarVC: UIViewController {
     
+    @IBOutlet weak var calendarView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        calendarView.layer.masksToBounds = true
+        calendarView.layer.cornerRadius = 20
     }
+    
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    //nei
-    
-    
-    
-    
-    
 }
