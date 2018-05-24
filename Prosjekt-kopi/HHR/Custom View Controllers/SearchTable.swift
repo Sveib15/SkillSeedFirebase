@@ -74,27 +74,8 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         fetchNearbyLocations(userID: uid!)
         
-        checkTraineeAvailability(userID: uid!) { (success) in
-            if success {
-                //Bruker finnes allerede
-            } else {
-                let refreshAlert = UIAlertController(title: "Welcome!", message: "Your user has not yet set its location. Do you wish to do so now? You can change this at any time", preferredStyle: UIAlertControllerStyle.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "Set Location", style: .default, handler: { (action: UIAlertAction!) in
-                    let traineeRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Trainee"))
-                    let TraineeController = TraineeAvailabilityController()
-                    TraineeController.setMyLocation(userId: self.uid!, dbBranch: traineeRef)
-                }))
-                
-                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                    //Nothing happens
-                }))
-                
-                self.present(refreshAlert, animated: true, completion: nil)
-            }
-        }
-        
     } //end viewDidLoad
+    
     
     func checkTraineeAvailability (userID: String, completion: @escaping ((_ success: Bool) -> Void)){
             self.ref.child("Locations").child("Trainee").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -318,6 +299,25 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        checkTraineeAvailability(userID: uid!) { (success) in
+            if success {
+                //Bruker finnes allerede
+            } else {
+                let refreshAlert = UIAlertController(title: "Welcome!", message: "Your user has not yet set its location. Do you wish to do so now? You can change this at any time", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Set Location", style: .default, handler: { (action: UIAlertAction!) in
+                    let traineeRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Trainee"))
+                    let TraineeController = TraineeAvailabilityController()
+                    TraineeController.setMyLocation(userId: self.uid!, dbBranch: traineeRef)
+                }))
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    //Nothing happens
+                }))
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

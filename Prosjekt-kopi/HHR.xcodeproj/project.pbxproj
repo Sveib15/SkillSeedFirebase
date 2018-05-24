@@ -24,6 +24,10 @@
 		555077072099D6E300D9AAA2 /* TraineeAvailabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */; };
 		5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5567CC31207CB13000EA4DE8 /* RegistrationController.swift */; };
 		556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D3D1A2083907E00B7818C /* MyProfileController.swift */; };
+		55757B0920B6CFA10090BE6A /* ReviewTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55757B0820B6CFA10090BE6A /* ReviewTableController.swift */; };
+		55757B0B20B6D1D50090BE6A /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55757B0A20B6D1D50090BE6A /* ReviewCell.swift */; };
+		55757B0F20B6DA0C0090BE6A /* GiveReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55757B0E20B6DA0C0090BE6A /* GiveReviewController.swift */; };
+		55757B1120B6E4450090BE6A /* ForeignReviewDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55757B1020B6E4450090BE6A /* ForeignReviewDisplayController.swift */; };
 		55923856208F1853006442AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55923855208F1853006442AB /* User.swift */; };
 		55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */; };
 		55B6B842209AF7BA00615DEC /* ForeignProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */; };
@@ -78,6 +82,10 @@
 		555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraineeAvailabilityController.swift; sourceTree = "<group>"; };
 		5567CC31207CB13000EA4DE8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		556D3D1A2083907E00B7818C /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
+		55757B0820B6CFA10090BE6A /* ReviewTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableController.swift; sourceTree = "<group>"; };
+		55757B0A20B6D1D50090BE6A /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		55757B0E20B6DA0C0090BE6A /* GiveReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveReviewController.swift; sourceTree = "<group>"; };
+		55757B1020B6E4450090BE6A /* ForeignReviewDisplayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignReviewDisplayController.swift; sourceTree = "<group>"; };
 		55923855208F1853006442AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55AFA7CE208DCF5F00C41735 /* DisplayDescController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDescController.swift; sourceTree = "<group>"; };
 		55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignProfileController.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 				10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */,
 				55B6B84B20A5AD0A00615DEC /* ChatMessageCell.swift */,
 				55BD726120776F35004B7FC0 /* SearchCell.swift */,
+				55757B0A20B6D1D50090BE6A /* ReviewCell.swift */,
 				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
 				55B6B84720A316CA00615DEC /* ChatCell.swift */,
 				55DD5549208F3C3B00C86D36 /* ContainerViewController.swift */,
@@ -220,8 +229,11 @@
 				55BD725F2077695A004B7FC0 /* SearchTable.swift */,
 				55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */,
 				55B6B84520A30E9500615DEC /* RecentController.swift */,
+				55757B1020B6E4450090BE6A /* ForeignReviewDisplayController.swift */,
+				55757B0E20B6DA0C0090BE6A /* GiveReviewController.swift */,
 				550EF41E208F53BF00FA9E71 /* TeacherAvailabilityController.swift */,
 				55305279208613BC00C985BC /* EditDescriptioController.swift */,
+				55757B0820B6CFA10090BE6A /* ReviewTableController.swift */,
 				55B6B84920A31E6900615DEC /* ChatLogController.swift */,
 				55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */,
 				555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */,
@@ -513,10 +525,14 @@
 				55B6B84C20A5AD0B00615DEC /* ChatMessageCell.swift in Sources */,
 				55B6B84620A30E9500615DEC /* RecentController.swift in Sources */,
 				5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */,
+				55757B0F20B6DA0C0090BE6A /* GiveReviewController.swift in Sources */,
+				55757B0B20B6D1D50090BE6A /* ReviewCell.swift in Sources */,
 				55923856208F1853006442AB /* User.swift in Sources */,
+				55757B1120B6E4450090BE6A /* ForeignReviewDisplayController.swift in Sources */,
 				108BBED8202DAF6A00E5CBCA /* AppDelegate.swift in Sources */,
 				553052822087462C00C985BC /* EditSkillController.swift in Sources */,
 				55B6B84A20A31E6900615DEC /* ChatLogController.swift in Sources */,
+				55757B0920B6CFA10090BE6A /* ReviewTableController.swift in Sources */,
 				556D3D1B2083907E00B7818C /* MyProfileController.swift in Sources */,
 				55DD5550208F49B800C86D36 /* ChangeProfileImageController.swift in Sources */,
 				555077072099D6E300D9AAA2 /* TraineeAvailabilityController.swift in Sources */,

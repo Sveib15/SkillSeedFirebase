@@ -93,15 +93,9 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
             
             if Auth.auth().currentUser != nil {
                 do {
-                    let beginnerRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Beginner"))
-                    let goodRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Good"))
-                    let adeptRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Adept"))
-                    let eliteRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Elite"))
-                    
-                    beginnerRef.removeKey(self.uid!)
-                    goodRef.removeKey(self.uid!)
-                    adeptRef.removeKey(self.uid!)
-                    eliteRef.removeKey(self.uid!)
+                    let traineeRef = GeoFire(firebaseRef: self.ref.child("Locations").child("Trainee"))
+        
+                    traineeRef.removeKey(self.uid!)
                 }
             }
         }))
