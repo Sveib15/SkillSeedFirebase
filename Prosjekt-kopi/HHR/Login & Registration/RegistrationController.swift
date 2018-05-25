@@ -103,7 +103,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
                 print("SUCCESSFULLY PUSHED TO DATABASE with your chosen desc")
             } else{
                 //Pushes info to database
-                let descValues = ["Name": self.userName, "Description": ""] as [String : Any]
+                let descValues = ["Name": self.userName, "Description": "", "ratingCount": 0] as [String : Any]
                 self.ref?.child("userInfo").child(uid).updateChildValues(descValues, withCompletionBlock: {(err, ref) in
                     //Errorhandling
                     if err != nil {

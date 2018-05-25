@@ -11,7 +11,8 @@ import Firebase
 
 class GiveReviewController: UIViewController {
 
-    @IBOutlet weak var reviewStarsSlider: UISlider!
+
+    @IBOutlet weak var reviewStarsSelector: UISegmentedControl!
     @IBOutlet weak var reviewText: UITextView!
     
     var currentForeignUID: String?
@@ -32,14 +33,15 @@ class GiveReviewController: UIViewController {
             self.name = snapshot.value as? String
         }, withCancel: nil)
     }
-    
+
     @objc func saveToDatabase() {
         
         let mainRef = ref.child("Reviews")
         let childRef = mainRef.childByAutoId()
         let toID = Shared.shared.currentForeignUid
+        let score = Double(reviewStarsSelector.selectedSegmentIndex)
         let timestamp = NSDate().timeIntervalSince1970 as NSNumber
-        let values = ["From": name!, "Text": reviewText.text, "Score": reviewStarsSlider.value, "Timestamp": timestamp] as [String : Any]
+        let values = ["From": name!, "Text": reviewText.text, "Score": score, "Timestamp": timestamp] as [String : Any]
         
         childRef.updateChildValues(values) { (error, mainRef) in
             if error != nil {
@@ -52,8 +54,53 @@ class GiveReviewController: UIViewController {
             recipientUserMessageRef.updateChildValues([messageId: 1])
         }
         
-        dismiss(animated: true, completion: nil)
+        checkFirstTime { (success) in
+            if success {
+                self.setAvgScore()
+            } else {
+                self.ref.child("userInfo").child(toID).updateChildValues(["avgScore": score])
+            }
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
+    func setAvgScore() {
+        let foreignUID = Shared.shared.currentForeignUid
+        let score = Double(reviewStarsSelector.selectedSegmentIndex)
+        let scoreRef = ref.child("userInfo").child(foreignUID)
+        //sets the average score
+        
+        scoreRef.child("avgScore").observeSingleEvent(of: .value, with: { (snapshot) in
+            let avgScore = snapshot.value as! Double
+            
+            self.ref.child("user-reviews").child(foreignUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let dictionary = snapshot.value as! [String: AnyObject]
+                let reviewCount = Double(dictionary.count)
+                
+                let avgScoreTimesCount = (avgScore * reviewCount)
+                let scoreToPost = (avgScoreTimesCount + score) / (reviewCount + 1)
+                
+                self.ref.child("userInfo").child(foreignUID).updateChildValues(["avgScore": scoreToPost, "ratingCount": Int(reviewCount + 1)])
+                
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
     
+    func checkFirstTime(completion: @escaping ((_ success: Bool) -> Void)){
+        let foreignUID = Shared.shared.currentForeignUid
+        
+        self.ref.child("userInfo").child(foreignUID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.hasChild("avgScore"){
+                completion(true)
+                //return true
+            }else{
+                print("avgScore finnes ikke, første sending")
+                completion(false)
+            }
+            //return result
+        }
+        )}
 }

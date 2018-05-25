@@ -128,7 +128,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
             if success {
                 self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: AnyObject] {
-                        self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: 0))
+                        self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: (dictionary["ratingCount"] as! Int)))
                         self.filteredUsers = self.users
                         self.filteredUsers.sort(by: {$0.distance < $1.distance})
                         //fucks with the profile images, because it changes the indecies
@@ -142,7 +142,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
             }
         }
     }
-    
     
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
@@ -273,6 +272,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 cell.profileImage.image = image
             }
         }
+            cell.reviewCountLabel.text = "(\(filteredUsers[indexPath.row].ratingCount ?? 0))"
         
         //sets the profile images to be round
         cell.profileImage.layer.borderWidth = 1
