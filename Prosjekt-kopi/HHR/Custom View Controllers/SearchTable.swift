@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 import GeoFire
+import Cosmos
 
 class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -126,25 +127,51 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func appendUserInfo (userKey: String, distanceToAppend: Double) {
         checkName(userID: userKey) { (success) in
             if success {
-                self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: (dictionary["ratingCount"] as! Int)))
-                        self.filteredUsers = self.users
-                        self.filteredUsers.sort(by: {$0.distance < $1.distance})
-                        //fucks with the profile images, because it changes the indecies
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
+                self.checkRatings(userID: userKey, BranchToCheck: "avgScore", completion: { (success) in
+                    if success {
+                        print("checkRating - If")
+                        self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let dictionary = snapshot.value as? [String: AnyObject] {
+                                self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: (dictionary["avgScore"] as! Double), ratingCount: (dictionary["ratingCount"] as! Int)))
+                                self.filteredUsers = self.users
+                                self.filteredUsers.sort(by: {$0.distance < $1.distance})
+                                //fucks with the profile images, because it changes the indecies
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }, withCancel: nil)
+                    //CheckRating - else
+                    } else {
+                        print("checkRating - else")
+                        self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let dictionary = snapshot.value as? [String: AnyObject] {
+                                self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: nil, ratingCount: 0))
+                                self.filteredUsers = self.users
+                                self.filteredUsers.sort(by: {$0.distance < $1.distance})
+                                //fucks with the profile images, because it changes the indecies
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }, withCancel: nil)
                     }
                 })
+            //CheckName - else
             } else {
-                print("completion in appendUserInfo Failed")
+                print("No userinfo, checkName completion failed")
             }
         }
     }
     
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
+        
+        self.users.removeAll()
+        self.filteredUsers = self.users
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         
         ref.child("Locations").child(dbPath).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -203,11 +230,11 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     )}
 
     //completion block to check if user has any score, or rating
-    func checkRatings(userID: String, completion: @escaping ((_ success: Bool) -> Void)){
-        self.ref.child("avgScore").observeSingleEvent(of: .value, with: { (snapshot) in
+    func checkRatings(userID: String, BranchToCheck: String, completion: @escaping ((_ success: Bool) -> Void)){
+        self.ref.child("userInfo").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
         
-            if snapshot.hasChild(userID){
-                completion(snapshot.hasChild(userID))
+            if snapshot.hasChild(BranchToCheck){
+                completion(snapshot.hasChild(BranchToCheck))
                 print("Ratingdata finnes")
                 //return true
             }else{
@@ -245,19 +272,39 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         return returnValue
     }
+    
+    @objc func changeLabel() -> String {
+        loadingLabel = "No Result"
+        return loadingLabel
+    }
+    
+    private var loadingLabel = "Loading"
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var retCell: UITableViewCell?
         
         if filteredUsers.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NoResultsCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoResultsCell") as! NoResultsCell
+            cell.Label.text = loadingLabel
+            
+            let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(changeLabel), userInfo: nil, repeats: false)
+            timer.fire()
+            
             retCell = cell
         } else {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProfileCell") as! SearchCell
         
         cell.nameLabel.text = filteredUsers[indexPath.row].name
+            
+            if filteredUsers[indexPath.row].avgRating != nil {
+            cell.cosmosView.rating = filteredUsers[indexPath.row].avgRating!
+            } else {
+                cell.cosmosView.rating = 0
+            }
+            
+            cell.cosmosView.text = "(\(filteredUsers[indexPath.row].ratingCount ?? 0))"
         
         let distanceInKm = filteredUsers[indexPath.row].distance / 1000
         let distanceStr = String(format: "%.1f", distanceInKm)
@@ -272,7 +319,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 cell.profileImage.image = image
             }
         }
-            cell.reviewCountLabel.text = "(\(filteredUsers[indexPath.row].ratingCount ?? 0))"
         
         //sets the profile images to be round
         cell.profileImage.layer.borderWidth = 1
@@ -324,17 +370,4 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-/*
- // MARK: - Navigation
-     
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
- // Get the new view controller using segue.destinationViewController.
- // Pass the selected object to the new view controller.
- }
- */
-
 }

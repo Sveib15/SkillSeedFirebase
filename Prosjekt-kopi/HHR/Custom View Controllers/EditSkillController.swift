@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Cosmos
 
 class EditSkillController: UIViewController {
     

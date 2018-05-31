@@ -8,12 +8,12 @@
 
 import UIKit
 import Firebase
+import Cosmos
 
 class GiveReviewController: UIViewController {
 
-
-    @IBOutlet weak var reviewStarsSelector: UISegmentedControl!
     @IBOutlet weak var reviewText: UITextView!
+    @IBOutlet weak var cosmosView: CosmosView!
     
     var currentForeignUID: String?
     var ref: DatabaseReference!
@@ -39,9 +39,9 @@ class GiveReviewController: UIViewController {
         let mainRef = ref.child("Reviews")
         let childRef = mainRef.childByAutoId()
         let toID = Shared.shared.currentForeignUid
-        let score = Double(reviewStarsSelector.selectedSegmentIndex)
+        let score = cosmosView.rating
         let timestamp = NSDate().timeIntervalSince1970 as NSNumber
-        let values = ["From": name!, "Text": reviewText.text, "Score": score, "Timestamp": timestamp] as [String : Any]
+        let values = ["From": name!, "Text": reviewText.text, "Score": (score + 1), "Timestamp": timestamp] as [String : Any]
         
         childRef.updateChildValues(values) { (error, mainRef) in
             if error != nil {
@@ -58,7 +58,7 @@ class GiveReviewController: UIViewController {
             if success {
                 self.setAvgScore()
             } else {
-                self.ref.child("userInfo").child(toID).updateChildValues(["avgScore": score])
+                self.ref.child("userInfo").child(toID).updateChildValues(["avgScore": score, "ratingCount": 1])
             }
         }
         
@@ -67,7 +67,7 @@ class GiveReviewController: UIViewController {
     
     func setAvgScore() {
         let foreignUID = Shared.shared.currentForeignUid
-        let score = Double(reviewStarsSelector.selectedSegmentIndex)
+        let score = cosmosView.rating
         let scoreRef = ref.child("userInfo").child(foreignUID)
         //sets the average score
         
@@ -80,9 +80,9 @@ class GiveReviewController: UIViewController {
                 let reviewCount = Double(dictionary.count)
                 
                 let avgScoreTimesCount = (avgScore * reviewCount)
-                let scoreToPost = (avgScoreTimesCount + score) / (reviewCount + 1)
+                let scoreToPost = (avgScoreTimesCount + (score + 1)) / (reviewCount + 1)
                 
-                self.ref.child("userInfo").child(foreignUID).updateChildValues(["avgScore": scoreToPost, "ratingCount": Int(reviewCount + 1)])
+                self.ref.child("userInfo").child(foreignUID).updateChildValues(["avgScore": (scoreToPost), "ratingCount": Int(reviewCount + 1)])
                 
             }, withCancel: nil)
         }, withCancel: nil)

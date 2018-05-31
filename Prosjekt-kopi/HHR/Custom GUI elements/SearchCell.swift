@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Cosmos
 
 class SearchCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var reviewCountLabel: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

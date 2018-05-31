@@ -15,6 +15,7 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'GeoFire'
+pod 'Cosmos', '~> 16.0'
 
 	target 'HHRTests' do
         	inherit! :search_paths
@@ -26,6 +27,7 @@ pod 'GeoFire'
 		pod 'FBSDKCoreKit'
 		pod 'FBSDKShareKit'
 		pod 'GeoFire'
+		pod 'Cosmos', '~> 16.0'
     end
 
 end

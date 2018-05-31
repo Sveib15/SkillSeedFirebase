@@ -1,21 +1,18 @@
 //
-//  ReviewCell.swift
+//  NoResultsCell.swift
 //  HHR
 //
-//  Created by Anders Berntsen on 24.05.2018.
+//  Created by Anders Berntsen on 28.05.2018.
 //  Copyright © 2018 Helping Hand. All rights reserved.
 //
 
 import UIKit
-import Cosmos
 
-class ReviewCell: UITableViewCell {
+class NoResultsCell: UITableViewCell {
     
-    @IBOutlet weak var reviewText: UITextView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var cosmosView: CosmosView!
+    @IBOutlet weak var Label: UILabel!
     
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

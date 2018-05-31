@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Cosmos
 
 class ForeignReviewDisplayController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -26,7 +27,7 @@ class ForeignReviewDisplayController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 100
+        tableView.rowHeight = 200
         
         ref = Database.database().reference()
         tableView.delegate = self
@@ -66,7 +67,7 @@ class ForeignReviewDisplayController: UIViewController, UITableViewDelegate, UIT
         
         cell.nameLabel.text = review.name
         cell.reviewText.text = review.text
-        cell.reviewScoreLabel.text = String(format: "%.1f", review.score!)
+        cell.cosmosView.rating = review.score!
         
         return cell
     }

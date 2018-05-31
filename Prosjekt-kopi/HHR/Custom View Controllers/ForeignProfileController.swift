@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import Cosmos
 
 class ForeignProfileController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var skillSelector: CustomSegmentControl!
+    @IBOutlet weak var cosmosView: CosmosView!
+    @IBOutlet weak var skillDisplay: UIButton!
     
     var foreignUid: String?
     var container: ContainerViewController!
@@ -59,15 +61,63 @@ class ForeignProfileController: UIViewController {
             self.title = snapshot.value as? String
         }
         
+        checkRatings(userID: foreignUid!, BranchToCheck: "avgScore") { (success) in
+            if success {
+                let ratingRef = self.ref.child("userInfo").child(self.foreignUid!)
+            ratingRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                let dictionary = snapshot.value as! [String: AnyObject]
+                self.cosmosView.rating = dictionary["avgScore"] as! Double
+                self.cosmosView.text = "(\(dictionary["ratingCount"] as! Int))"
+                
+            }, withCancel: nil)
+            } else {
+                self.cosmosView.rating = 0
+                self.cosmosView.text = "(0)"
+            }
+        }
+        
+        
         //sets the skill Value
         let skillRef = ref.child("userSkillGolf").child(foreignUid!).child("Skill")
         skillRef.observeSingleEvent(of: .value) { (snapshot) in
-            self.skillSelector.updateView(index: (snapshot.value as? Int)!)
+            
+            self.skillDisplay.isUserInteractionEnabled = false
+            self.skillDisplay.layer.masksToBounds = true
+            self.skillDisplay.layer.cornerRadius = 20
+            
+            switch snapshot.value as! Int {
+            case 0:
+                self.skillDisplay.setTitle("Beginner", for: .normal)
+            case 1:
+                self.skillDisplay.setTitle("Good", for: .normal)
+            case 2:
+                self.skillDisplay.setTitle("Adept", for: .normal)
+            case 3:
+                self.skillDisplay.setTitle("Elite", for: .normal)
+            default:
+                self.skillDisplay.setTitle("Beginner", for: .normal)
+            }
         }
         //Sets the container view to show description
         container.segueIdentifierReceivedFromParent("Description")
                 
     } // End ViewDidLoad
+    
+    func checkRatings(userID: String, BranchToCheck: String, completion: @escaping ((_ success: Bool) -> Void)){
+        self.ref.child("userInfo").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.hasChild(BranchToCheck){
+                completion(snapshot.hasChild(BranchToCheck))
+                print("Ratingdata finnes")
+                //return true
+            }else{
+                print("DET FINNES INGEN RATINGDATA, Setter alt til 0!")
+                completion(false)
+                //return false
+            }
+            //return result
+        }
+        )}
     
     //ContainerView functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,6 +135,7 @@ class ForeignProfileController: UIViewController {
             container.segueIdentifierReceivedFromParent("Review")
         }
     }
+    
     
     @IBAction func segueToChat(_ sender: Any) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())

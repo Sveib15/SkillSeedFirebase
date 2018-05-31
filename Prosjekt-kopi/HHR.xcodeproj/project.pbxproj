@@ -45,6 +45,7 @@
 		55DD554A208F3C3B00C86D36 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD5549208F3C3B00C86D36 /* ContainerViewController.swift */; };
 		55DD554C208F3C6500C86D36 /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD554B208F3C6500C86D36 /* EmptySegue.swift */; };
 		55DD5550208F49B800C86D36 /* ChangeProfileImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */; };
+		55F1808220BC1F8D00C67282 /* NoResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F1808120BC1F8D00C67282 /* NoResultsCell.swift */; };
 		55FF73F12088A21300C8CCEA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FF73F02088A21300C8CCEA /* NetworkService.swift */; };
 		D2ECB4FC91BB59FA09E2673F /* Pods_HHRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF39DF1EF081D91C67255F4 /* Pods_HHRTests.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		55DD5549208F3C3B00C86D36 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		55DD554B208F3C6500C86D36 /* EmptySegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
 		55DD554F208F49B800C86D36 /* ChangeProfileImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileImageController.swift; sourceTree = "<group>"; };
+		55F1808120BC1F8D00C67282 /* NoResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsCell.swift; sourceTree = "<group>"; };
 		55FF73F02088A21300C8CCEA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7088CC563D82F34ECA1A9D6B /* Pods_HHR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HHR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5CB94A9DD2D7889E6C10F /* Pods-HHR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HHR/Pods-HHR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */,
 				55B6B84B20A5AD0A00615DEC /* ChatMessageCell.swift */,
 				55BD726120776F35004B7FC0 /* SearchCell.swift */,
+				55F1808120BC1F8D00C67282 /* NoResultsCell.swift */,
 				55757B0A20B6D1D50090BE6A /* ReviewCell.swift */,
 				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
 				55B6B84720A316CA00615DEC /* ChatCell.swift */,
@@ -418,6 +421,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HHRTests/Pods-HHRTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -430,6 +434,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -452,6 +457,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HHR/Pods-HHR-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -464,6 +470,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -514,6 +521,7 @@
 				55BD726220776F35004B7FC0 /* SearchCell.swift in Sources */,
 				550EF41F208F53BF00FA9E71 /* TeacherAvailabilityController.swift in Sources */,
 				55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */,
+				55F1808220BC1F8D00C67282 /* NoResultsCell.swift in Sources */,
 				55B6B84820A316CA00615DEC /* ChatCell.swift in Sources */,
 				55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */,
 				108BBEDA202DAF6A00E5CBCA /* ViewControllerSuper.swift in Sources */,

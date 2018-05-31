@@ -26,7 +26,7 @@ class ReviewTableController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 100
+        tableView.rowHeight = 200
         
         ref = Database.database().reference()
         tableView.delegate = self
@@ -66,7 +66,7 @@ class ReviewTableController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.nameLabel.text = review.name
         cell.reviewText.text = review.text
-        cell.reviewScoreLabel.text = String(format: "%.1f", review.score!)
+        cell.cosmosView.rating = review.score!
         
         return cell
     }
