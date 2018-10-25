@@ -12,7 +12,12 @@ public class Shared {
     
     public var tabBarIndex: Int = 0
     public var currentForeignUid: String = ""
+    public var cusDist: Int = 10
+    
+    
     public static var shared = Shared()
+    
+    
 
     /*
     // Only override draw() if you perform custom drawing.

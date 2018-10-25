@@ -13,6 +13,7 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
 
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
+    var oldImageName: String?
     
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -56,8 +57,21 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
                 }
             }
         }
-        
+        getOldImageName()
     } // End ViewDidLoad
+    
+    
+    func getOldImageName() {
+        
+        guard let uid = Auth.auth().currentUser?.uid
+            else {
+                return
+        }
+        let oldImageRef = ref.child("userInfo").child(uid).child("imageName")
+        oldImageRef.observeSingleEvent(of: .value) { (snapshot) in
+            self.oldImageName = snapshot.value as? String
+        }
+    }
     
     @IBAction func handleSelectImage(_ sender: Any) {
         let picker = UIImagePickerController()
@@ -100,12 +114,21 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    let values = ["profileImage" : profileImageUrl]
+                    let values = ["profileImage" : profileImageUrl, "imageName" : imageName]
+                    
                     self.ref.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
                         //Errorhandling
                         if err != nil {
                             print(err!)
                             return
+                        }
+                    })
+                    let imageToDelete = self.storageRef.child("\(imageName).png")
+                    imageToDelete.delete(completion: { (error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("File delete successfull \(imageToDelete)")
                         }
                     })
                 }

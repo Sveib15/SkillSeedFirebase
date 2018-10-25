@@ -134,7 +134,7 @@ class RegistrationController: UIViewController, UIImagePickerControllerDelegate,
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    let values = ["profileImage" : profileImageUrl]
+                    let values = ["profileImage" : profileImageUrl, "imageName" : imageName]
                     self.ref.child("userInfo").child(uid).updateChildValues(values, withCompletionBlock: {(err, ref) in
                         //Errorhandling
                         if err != nil {

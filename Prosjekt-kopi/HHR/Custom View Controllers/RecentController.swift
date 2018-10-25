@@ -94,6 +94,8 @@ class RecentController: UIViewController, UITableViewDelegate, UITableViewDataSo
                         self.messagesArrayFiltered = self.messagesArray
                         print(self.messagesArrayFiltered)
                         
+                        //Her legges funksjon for Notifications!!
+                        
                         self.timer?.invalidate()
                         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
                         

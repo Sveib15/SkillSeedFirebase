@@ -15,6 +15,8 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
 
 
     @IBOutlet weak var deleteMeButton: UIButton!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var slider: UISlider!
     
     var ref: DatabaseReference!
     var GeoRef: GeoFire!
@@ -40,6 +42,8 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        slider.value = Float(Shared.shared.cusDist)
         
         deleteMeButton.layer.masksToBounds = false
         deleteMeButton.layer.cornerRadius = deleteMeButton.frame.height/2
@@ -68,6 +72,15 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
             }//end GeoRef
         }//end if
     }//end setMyLocation
+    
+    @IBAction func setSearchButton(_ sender: Any) {
+        Shared.shared.cusDist = Int(slider.value)
+    }
+    
+    @IBAction func sliderAction(_ sender: UISlider) {
+        label.text = String("\(Int(sender.value)) km")
+    }
+    
     
     @objc func saveToDatabase() {
         

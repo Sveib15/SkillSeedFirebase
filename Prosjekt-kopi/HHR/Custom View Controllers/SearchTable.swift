@@ -18,6 +18,12 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var skillSortControl: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // Slide Menu outlets
+    @IBOutlet weak var slideMenuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var slideMenu: UIView!
+    @IBOutlet weak var sortByLocation: UIButton!
+    @IBOutlet weak var sortByRating: UIButton!
+    
     var ref: DatabaseReference!
     var GeoRef: GeoFire!
     var GeoTraineeRef: GeoFire!
@@ -26,13 +32,17 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var distanceArray = [tempDistance]()
     let uid = Auth.auth().currentUser?.uid
     var dbPath: String = "Beginner"
+    var myDistance: Int = Shared.shared.cusDist
+    var sortBy: Int = 0
+    
+    
     
     struct userList {
         var name: String?
         var databaseKey: String?
         var imageUrl: String?
         var distance: Double = 0
-        var avgRating: Double?
+        var avgRating: Double = 0
         var ratingCount: Int?
     }
     
@@ -55,7 +65,8 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.hideKeyboardWhenTappedAround()
         
         self.tableView.rowHeight = 100
-        
+        slideMenu.layer.shadowOpacity = 1
+        slideMenu.layer.shadowRadius = 6
         //Initial setup
         ref = Database.database().reference()
         GeoRef = GeoFire(firebaseRef: ref.child("Locations").child(dbPath))
@@ -65,18 +76,45 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.search
         
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadArray)), animated: true)
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor.darkGray
+//        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(sortByUserInput)), animated: true)
+//        let navigationBarAppearace = UINavigationBar.appearance()
+//        navigationBarAppearace.tintColor = UIColor.darkGray
         
         skillSortControl.addTarget(self, action: #selector(changeGeoRef), for: .valueChanged)
+        sortByRating.addTarget(self, action: #selector(btnSortByRating), for: .touchUpInside)
+        sortByLocation.addTarget(self, action: #selector(btnSortByLocation), for: .touchUpInside)
+
         
         self.tableView.addSubview(self.refreshControl)
         
-        fetchNearbyLocations(userID: uid!)
+        fetchNearbyLocations(userID: uid!, distance: myDistance)
         
     } //end viewDidLoad
     
+    // Slide Menu
+    var menuShowing = false
+    @IBAction func slideMenuActivator(_ sender: Any) {
+        
+        if (menuShowing) {
+            slideMenuLeadingConstraint.constant = 140
+        } else {
+            slideMenuLeadingConstraint.constant = 0
+            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        menuShowing = !menuShowing
+    }
+    
+    @objc func btnSortByRating () {
+        sortBy = 0
+        reloadArray()
+    }
+    @objc func btnSortByLocation () {
+        sortBy = 1
+        reloadArray()
+    }
     
     func checkTraineeAvailability (userID: String, completion: @escaping ((_ success: Bool) -> Void)){
             self.ref.child("Locations").child("Trainee").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -94,7 +132,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     
 
-    func fetchNearbyLocations (userID: String) {
+    func fetchNearbyLocations (userID: String, distance: Int) {
         
         users = [userList]()
         var myLoc = CLLocation()
@@ -107,16 +145,16 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 
                 myLoc = location!
                 //sets the radius - at 100 km
-                let circleQuery = self.GeoRef.query(at: myLoc, withRadius: 100.0)
+                let circleQuery = self.GeoRef.query(at: myLoc, withRadius: Double(distance))
             
                 circleQuery.observe(.keyEntered, with: { (key: String, location: CLLocation!) in
                     let distanceFromUser = myLoc.distance(from: location)
                     if key == Auth.auth().currentUser?.uid {
-                        print("crap")
                     }
                     else {
                     self.appendUserInfo(userKey: key, distanceToAppend: distanceFromUser)
                         self.filteredUsers = self.users
+                        print(distance)
                     }
                 })
             }
@@ -134,8 +172,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                             if let dictionary = snapshot.value as? [String: AnyObject] {
                                 self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: (dictionary["avgScore"] as! Double), ratingCount: (dictionary["ratingCount"] as! Int)))
                                 self.filteredUsers = self.users
-                                self.filteredUsers.sort(by: {$0.distance < $1.distance})
-                                //fucks with the profile images, because it changes the indecies
+                                self.sortByUserInput()
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
                                 }
@@ -146,10 +183,9 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                         print("checkRating - else")
                         self.ref.child("userInfo").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
                             if let dictionary = snapshot.value as? [String: AnyObject] {
-                                self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: nil, ratingCount: 0))
+                                self.users.append(userList.init(name: (dictionary["Name"] as! String), databaseKey: userKey, imageUrl: (dictionary["profileImage"] as! String), distance: distanceToAppend, avgRating: 0, ratingCount: 0))
                                 self.filteredUsers = self.users
-                                self.filteredUsers.sort(by: {$0.distance < $1.distance})
-                                //fucks with the profile images, because it changes the indecies
+                                self.sortByUserInput()
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
                                 }
@@ -164,6 +200,16 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
     }
     
+    @objc func sortByUserInput() {
+        
+        if sortBy == 0 {
+            filteredUsers.sort(by: {$0.avgRating > $1.avgRating})
+        } else if sortBy == 1 {
+            filteredUsers.sort(by: {$0.distance > $1.distance})
+        }
+    }
+    
+    
     //Reloads the arrays, acts as a refresh
     @objc func reloadArray() {
         
@@ -176,7 +222,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         ref.child("Locations").child(dbPath).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if snapshot.hasChildren() {
-                self.fetchNearbyLocations(userID: self.uid!)
+                self.fetchNearbyLocations(userID: self.uid!, distance: self.myDistance)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -274,7 +320,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     @objc func changeLabel() -> String {
-        loadingLabel = "No Result"
+        loadingLabel = "Loading..."
         return loadingLabel
     }
     
@@ -298,12 +344,11 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         cell.nameLabel.text = filteredUsers[indexPath.row].name
             
-            if filteredUsers[indexPath.row].avgRating != nil {
-            cell.cosmosView.rating = filteredUsers[indexPath.row].avgRating!
+            if filteredUsers[indexPath.row].avgRating != 0 {
+                cell.cosmosView.rating = filteredUsers[indexPath.row].avgRating
             } else {
                 cell.cosmosView.rating = 0
             }
-            
             cell.cosmosView.text = "(\(filteredUsers[indexPath.row].ratingCount ?? 0))"
         
         let distanceInKm = filteredUsers[indexPath.row].distance / 1000
