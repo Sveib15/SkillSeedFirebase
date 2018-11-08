@@ -13,6 +13,7 @@ public class Shared {
     public var tabBarIndex: Int = 0
     public var currentForeignUid: String = ""
     public var cusDist: Int = 10
+    public var currentCategory: String = ""
     
     
     public static var shared = Shared()

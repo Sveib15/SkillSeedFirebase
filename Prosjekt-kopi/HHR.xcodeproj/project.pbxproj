@@ -20,6 +20,8 @@
 		5530527E2086280700C985BC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530527D2086280700C985BC /* CustomTabBar.swift */; };
 		5530528020862AF800C985BC /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530527F20862AF800C985BC /* Shared.swift */; };
 		553052822087462C00C985BC /* EditSkillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553052812087462C00C985BC /* EditSkillController.swift */; };
+		5544107A2181C8520083D26F /* CategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554410792181C8520083D26F /* CategoriesController.swift */; };
+		5544107C2181DE330083D26F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5544107B2181DE330083D26F /* CategoryCell.swift */; };
 		5548A6D4207F7D0F00161DCE /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */; };
 		555077072099D6E300D9AAA2 /* TraineeAvailabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */; };
 		5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5567CC31207CB13000EA4DE8 /* RegistrationController.swift */; };
@@ -79,6 +81,8 @@
 		5530527D2086280700C985BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		5530527F20862AF800C985BC /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		553052812087462C00C985BC /* EditSkillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSkillController.swift; sourceTree = "<group>"; };
+		554410792181C8520083D26F /* CategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesController.swift; sourceTree = "<group>"; };
+		5544107B2181DE330083D26F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		555077062099D6E300D9AAA2 /* TraineeAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraineeAvailabilityController.swift; sourceTree = "<group>"; };
 		5567CC31207CB13000EA4DE8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				10B1082C203EF3C0003BF3EA /* CalenderViewController.swift */,
 				55B6B84B20A5AD0A00615DEC /* ChatMessageCell.swift */,
 				55BD726120776F35004B7FC0 /* SearchCell.swift */,
+				5544107B2181DE330083D26F /* CategoryCell.swift */,
 				55F1808120BC1F8D00C67282 /* NoResultsCell.swift */,
 				55757B0A20B6D1D50090BE6A /* ReviewCell.swift */,
 				5548A6D3207F7D0F00161DCE /* CustomSegmentControl.swift */,
@@ -231,6 +236,7 @@
 				108BBED9202DAF6A00E5CBCA /* ViewControllerSuper.swift */,
 				55BD725F2077695A004B7FC0 /* SearchTable.swift */,
 				55B6B841209AF7BA00615DEC /* ForeignProfileController.swift */,
+				554410792181C8520083D26F /* CategoriesController.swift */,
 				55B6B84520A30E9500615DEC /* RecentController.swift */,
 				55757B1020B6E4450090BE6A /* ForeignReviewDisplayController.swift */,
 				55757B0E20B6DA0C0090BE6A /* GiveReviewController.swift */,
@@ -523,6 +529,7 @@
 				55AFA7CF208DCF5F00C41735 /* DisplayDescController.swift in Sources */,
 				55F1808220BC1F8D00C67282 /* NoResultsCell.swift in Sources */,
 				55B6B84820A316CA00615DEC /* ChatCell.swift in Sources */,
+				5544107A2181C8520083D26F /* CategoriesController.swift in Sources */,
 				55BB3C52207CF05C0015D289 /* InitialDescView.swift in Sources */,
 				108BBEDA202DAF6A00E5CBCA /* ViewControllerSuper.swift in Sources */,
 				55BCF57B2085FB7A008AECCD /* SettingsController.swift in Sources */,
@@ -532,6 +539,7 @@
 				55BB3C54207E2BD50015D289 /* LoginController.swift in Sources */,
 				55B6B84C20A5AD0B00615DEC /* ChatMessageCell.swift in Sources */,
 				55B6B84620A30E9500615DEC /* RecentController.swift in Sources */,
+				5544107C2181DE330083D26F /* CategoryCell.swift in Sources */,
 				5567CC32207CB13000EA4DE8 /* RegistrationController.swift in Sources */,
 				55757B0F20B6DA0C0090BE6A /* GiveReviewController.swift in Sources */,
 				55757B0B20B6D1D50090BE6A /* ReviewCell.swift in Sources */,

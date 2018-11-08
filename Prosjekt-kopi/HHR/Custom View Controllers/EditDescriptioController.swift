@@ -47,7 +47,7 @@ class EditDescriptioController: UIViewController {
                 return
             }
             print("SUCCESSFULLY PUSHED DESCRIPTION TO DATABASE")
-            Shared.shared.tabBarIndex = 3
+            Shared.shared.tabBarIndex = 4
             let RegController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
             self.present(RegController!, animated: true, completion: nil)
         })

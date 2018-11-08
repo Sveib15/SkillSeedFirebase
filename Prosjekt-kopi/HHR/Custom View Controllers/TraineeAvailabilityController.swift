@@ -92,7 +92,7 @@ class TraineeAvailabilityController: UIViewController, CLLocationManagerDelegate
         setMyLocation(userId: uid, dbBranch: traineeRef)
         
         
-        Shared.shared.tabBarIndex = 3
+        Shared.shared.tabBarIndex = 4
         let RegController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
         self.present(RegController!, animated: true, completion: nil)
     }

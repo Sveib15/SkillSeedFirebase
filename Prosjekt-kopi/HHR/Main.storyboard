@@ -309,9 +309,12 @@ Accepted certifications:
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMD-sV-yVk">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yMD-sV-yVk">
                                 <rect key="frame" x="0.0" y="88" width="324" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="ghL-bh-rfa"/>
+                                    <constraint firstAttribute="width" constant="324" id="u6w-0Q-qIK"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TAw-aS-7pa">
@@ -398,7 +401,7 @@ Accepted certifications:
                                 <color key="tintColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Emb-5h-Zrw" userLabel="Slide Menu">
-                                <rect key="frame" x="235" y="144" width="140" height="585"/>
+                                <rect key="frame" x="375" y="144" width="140" height="117"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFO-x6-HVc">
                                         <rect key="frame" x="26" y="25" width="90" height="34"/>
@@ -419,8 +422,8 @@ Accepted certifications:
                                 </subviews>
                                 <color key="backgroundColor" red="0.78823529410000004" green="0.78823529410000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="aUU-fi-fim"/>
-                                    <constraint firstAttribute="height" constant="585" id="hc2-ff-2BY"/>
+                                    <constraint firstAttribute="width" constant="140" id="2TR-xx-qMl"/>
+                                    <constraint firstAttribute="height" constant="117" id="xWX-XL-EMQ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0Q-s3-VYN">
@@ -435,8 +438,10 @@ Accepted certifications:
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Emb-5h-Zrw" secondAttribute="bottom" constant="83" id="NVA-xf-6LM"/>
-                            <constraint firstItem="Emb-5h-Zrw" firstAttribute="trailing" secondItem="FUD-q5-SWN" secondAttribute="trailing" id="swV-Vd-oem"/>
+                            <constraint firstItem="Emb-5h-Zrw" firstAttribute="trailing" secondItem="FUD-q5-SWN" secondAttribute="trailing" constant="140" id="HVZ-7r-zNE"/>
+                            <constraint firstItem="Emb-5h-Zrw" firstAttribute="top" secondItem="yMD-sV-yVk" secondAttribute="bottom" id="IBX-Nx-qPx"/>
+                            <constraint firstItem="yMD-sV-yVk" firstAttribute="top" secondItem="FUD-q5-SWN" secondAttribute="top" id="b7V-fL-yWp"/>
+                            <constraint firstItem="yMD-sV-yVk" firstAttribute="leading" secondItem="FUD-q5-SWN" secondAttribute="leading" id="mND-Er-X8w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FUD-q5-SWN"/>
                     </view>
@@ -447,7 +452,7 @@ Accepted certifications:
                         <outlet property="searchBar" destination="yMD-sV-yVk" id="WaC-RX-dZc"/>
                         <outlet property="skillSortControl" destination="O6d-1u-i1i" id="Odc-rx-Hgi"/>
                         <outlet property="slideMenu" destination="Emb-5h-Zrw" id="MUS-6P-6Qb"/>
-                        <outlet property="slideMenuLeadingConstraint" destination="swV-Vd-oem" id="FKl-fk-hAM"/>
+                        <outlet property="slideMenuLeadingConstraint" destination="HVZ-7r-zNE" id="3ab-3a-WFN"/>
                         <outlet property="sortByLocation" destination="RFO-x6-HVc" id="PlH-b5-GbJ"/>
                         <outlet property="sortByRating" destination="zDq-Df-pOV" id="aHI-bS-vmc"/>
                         <outlet property="tableView" destination="TAw-aS-7pa" id="W4a-fk-aS6"/>
@@ -661,7 +666,7 @@ Accepted certifications:
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKu-Qp-YMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3946.4000000000001" y="-1476.3546798029556"/>
+            <point key="canvasLocation" x="-5033" y="-1540"/>
         </scene>
         <!--Custom Tab Bar-->
         <scene sceneID="7oD-kT-PiE">
@@ -679,6 +684,7 @@ Accepted certifications:
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
+                        <segue destination="KKC-qm-eQw" kind="relationship" relationship="viewControllers" id="G3Q-M0-6sV"/>
                         <segue destination="e3G-vF-xRw" kind="relationship" relationship="viewControllers" id="Rs3-js-7By"/>
                         <segue destination="G3w-sT-P01" kind="relationship" relationship="viewControllers" id="zRU-wv-TMx"/>
                         <segue destination="HX0-2t-cPq" kind="relationship" relationship="viewControllers" id="6PJ-Ba-LMg"/>
@@ -688,6 +694,55 @@ Accepted certifications:
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOX-mT-9GS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3946" y="-754"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="1o3-ds-Rwl">
+            <objects>
+                <viewController title="Categories" id="KKC-qm-eQw" customClass="CategoriesController" customModule="HHR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="osB-d0-Wkl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2WB-Ob-LHH">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Categories" rowHeight="100" id="Ysg-ge-daj" customClass="CategoryCell" customModule="HHR" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ysg-ge-daj" id="gLg-p7-jdc">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Golf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orT-hj-DCl">
+                                                    <rect key="frame" x="15" y="29" width="209" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CategoryName" destination="orT-hj-DCl" id="koH-jK-svK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="wEF-oq-1VJ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Categories" image="Categories" id="iyw-Vx-6Mb"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="2WB-Ob-LHH" id="GKi-To-sWg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RK7-oR-cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2996" y="-1541.3793103448277"/>
         </scene>
         <!--Chat-->
         <scene sceneID="IYJ-Hg-oVD">
@@ -710,7 +765,7 @@ Accepted certifications:
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlO-xb-amX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2980" y="-858"/>
+            <point key="canvasLocation" x="-2118" y="-859"/>
         </scene>
         <!--Recent-->
         <scene sceneID="0Lh-sg-HAY">
@@ -787,7 +842,7 @@ Accepted certifications:
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7K-Ug-Ib9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2052" y="-859"/>
+            <point key="canvasLocation" x="-967" y="-859"/>
         </scene>
         <!--Settings-->
         <scene sceneID="iKn-Zt-WxM">
@@ -1919,14 +1974,15 @@ Accepted certifications:
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="317" height="388"/>
+        <image name="Background" width="76.080001831054688" height="93.120002746582031"/>
+        <image name="Categories" width="25.600000381469727" height="25.600000381469727"/>
         <image name="FB-Button" width="800" height="300"/>
         <image name="Message" width="31" height="31"/>
         <image name="Navigaton" width="31" height="27"/>
         <image name="Profile pic" width="200" height="200"/>
-        <image name="Search" width="34" height="34"/>
-        <image name="Settings" width="38" height="38"/>
-        <image name="Sort-icon" width="16" height="16"/>
+        <image name="Search" width="27.200000762939453" height="27.200000762939453"/>
+        <image name="Settings" width="30.399999618530273" height="30.399999618530273"/>
+        <image name="Sort-icon" width="12.800000190734863" height="12.800000190734863"/>
         <image name="kalender" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>

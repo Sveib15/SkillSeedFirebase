@@ -19,6 +19,8 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var searchBar: UISearchBar!
     
     // Slide Menu outlets
+    
+
     @IBOutlet weak var slideMenuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var slideMenu: UIView!
     @IBOutlet weak var sortByLocation: UIButton!
@@ -66,7 +68,10 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         self.tableView.rowHeight = 100
         slideMenu.layer.shadowOpacity = 1
-        slideMenu.layer.shadowRadius = 6
+        slideMenu.layer.shadowRadius = 3
+        slideMenu.layer.borderWidth = 2
+        slideMenu.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
+
         //Initial setup
         ref = Database.database().reference()
         GeoRef = GeoFire(firebaseRef: ref.child("Locations").child(dbPath))
@@ -89,14 +94,20 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         fetchNearbyLocations(userID: uid!, distance: myDistance)
         
+        print(Shared.shared.currentCategory)
+        
     } //end viewDidLoad
     
     // Slide Menu
-    var menuShowing = false
+    var menuShowing = true
     @IBAction func slideMenuActivator(_ sender: Any) {
         
         if (menuShowing) {
             slideMenuLeadingConstraint.constant = 140
+            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         } else {
             slideMenuLeadingConstraint.constant = 0
             
@@ -154,7 +165,6 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
                     else {
                     self.appendUserInfo(userKey: key, distanceToAppend: distanceFromUser)
                         self.filteredUsers = self.users
-                        print(distance)
                     }
                 })
             }
@@ -203,7 +213,7 @@ class SearchTable: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @objc func sortByUserInput() {
         
         if sortBy == 0 {
-            filteredUsers.sort(by: {$0.avgRating > $1.avgRating})
+            filteredUsers.sort(by: {$1.avgRating > $0.avgRating})
         } else if sortBy == 1 {
             filteredUsers.sort(by: {$0.distance > $1.distance})
         }

@@ -134,7 +134,7 @@ class ChangeProfileImageController: UIViewController, UIImagePickerControllerDel
                 }
             }) // end putdata
         }
-    Shared.shared.tabBarIndex = 3
+    Shared.shared.tabBarIndex = 4
     let destinationController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController")
     self.present(destinationController!, animated: true, completion: nil)
     } // End saveToDatabase()
